@@ -83,7 +83,8 @@ export default {
     },
     onFileChange() {
       if (this.files != null) {
-        if(this.files.type !='image/jpeg/gif'){
+        if((this.files.type !='image/jpeg')&&(this.files.type !='image/gif')&&(this.files.type !='image/png')){
+         
           this.files =null
           Swal.fire(
             "<alert-title>Error!</alert-title>",
