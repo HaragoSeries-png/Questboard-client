@@ -261,15 +261,7 @@
               width="500"
               src="https://image.dek-d.com/27/0780/2231/128808139"
               >
-
               </v-img>
-
-
-
-
-
-
-
           </div>
         </center>
       </v-col>

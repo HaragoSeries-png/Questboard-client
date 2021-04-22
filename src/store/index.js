@@ -29,7 +29,15 @@ export default new Vuex.Store({
     getcount(state) { return state.count },
     getinfoma(state) { return state.userinfoma },
     getuserid(state) { return state.userid },
-    getnoti(state) {  return JSON.parse(state.notification) },
+    getnoti(state) { 
+      try {
+        return JSON.parse(state.notification) 
+      } catch (error) {
+        return false
+      }
+        
+
+    },
     getallquest(state) {  return JSON.parse(state.allquest) },
     getAll(state) { return [state.islog, state.currentUser, state.userfullname, state.userinfoma] }
   },
@@ -55,7 +63,7 @@ export default new Vuex.Store({
     logout(state) {
       localStorage.setItem('uid', '')
       localStorage.setItem('fullname', '')
-      localStorage.setItem('notificaton', '')
+      localStorage.setItem('notificaton', [])
       state.token = '',
       state.islog = false,
       state.userid = '',
@@ -70,9 +78,9 @@ export default new Vuex.Store({
       state.userfullname = localStorage.getItem('fullname') || ''
     },
     senoti(state,value){
-      console.log('v '+value)
       localStorage.setItem('notificaton',JSON.stringify(value));
       state.noti = value
+      
       this.commit('update')
     },
     setcount(state, value){ state.count = value},

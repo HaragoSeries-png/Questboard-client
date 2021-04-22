@@ -41,17 +41,33 @@ export default {
       return{
         status: this.$store.getters.isLoggedIn,
         notiicon : 'alarm-light-outline',
-        noti:this.$store.getters.getnoti
+        noti:[]
       }
     },
     methods:{
-        async getnoti(){           
-            let a = await notifyService.getnoti()           
+        async getnoti(){   
+          console.log('getrni'+this.$store.getters.getnoti)  
+          if(!this.$store.getters.getnoti){
+            console.log('emp')
+            let a = await notifyService.getnoti(true)        
             if(a.sucess){ 
-              this.$store.dispatch("setnoti", a.notify );
-              this.status =this.$store.getters.isLoggedIn            
-              this.$forceUpdate()
+              console.log('suc '+a.sucess)
+              await this.$store.dispatch("setnoti", a.notify ); 
+              this.noti = this.$store.getters.getnoti
+              console.log(this.noti)  
+              // this.$forceUpdate()    
+              this.$router.go()          
             }
+          } 
+          else{
+            this.noti = this.$store.getters.getnoti
+            console.log('have')
+            let a = await notifyService.getnoti(false)           
+            if(a.sucess){ 
+              console.log('new')
+              this.$store.dispatch("setnoti", a.notify );          
+            }
+          }           
         },
         loop(){           
             setInterval(function(){
@@ -60,14 +76,15 @@ export default {
         }
     },
     created(){
+ 
         this.getnoti()  
         this.loop()   
         this.status =this.$store.getters.isLoggedIn 
-        this.noti = this.$store.getters.getnoti
+
     },
     updated(){
       this.status =this.$store.getters.isLoggedIn
-      this.noti = this.$store.getters.getnoti
+
     }
     
 }

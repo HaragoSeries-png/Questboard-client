@@ -4,10 +4,10 @@ axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
 const url = '/api/noti'
 
 class notifyService {   
-    static async getnoti(){
-        console.log('noti ser at ')
-        let a = await axios.get(url).then(res=>{return res.data})
-        console.log(a)
+    static async getnoti(force){
+        console.log('noti ser')
+        console.log('force '+ force)
+        let a = await axios.get(url,{params:{force:force}}).then(res=>{return res.data})
         return a
     }
 }
