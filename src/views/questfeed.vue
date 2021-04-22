@@ -295,6 +295,7 @@
 <script>
 import Questcard from "../components/Questcard";
 import QuestService from "@/service/questService";
+
 export default {
   name: "QuestFeed",
   components: {
@@ -311,38 +312,26 @@ export default {
   methods: {
     getquest: async function() {
       console.log('cat '+this.currcat)
-      let a = await QuestService.getquest(this.currpage-1,this.currcat).then((res) => {
+      let a = await QuestService.getquest().then((res) => {
         return res;
       });
-      if(a.pagenum<1){
-        this.quests =[]
-        this.pagenum = 0
-        this.masseage = false
-        return
-      }
-      else{
-        this.masseage = true
-        console.log('pagenum ='+a.pagenum);
-        this.quests =[]
-        this.quests = await a.quest;
-        this.pagenum = await a.pagenum
-      }
+      console.log(a.quest)
+      this.quests = a.quest
       
     },
     changePage(i){
       this.currpage = i   
-      this.getquest()
     },
     changeCat(i){
      
       this.currpage = 1
       this.currcat = i
-      this.getquest()
+
     },
     changeCatm(i){
       i = i.target.value
       this.currcat = i
-      this.getquest()
+
     },
     getc(value){
       console.log(value);
@@ -350,7 +339,7 @@ export default {
   },
   data() {
     return {
-      quests: '',
+      quests: [],
       pagenum:'',
       currpage:'',
       currcat:'',
@@ -470,6 +459,14 @@ export default {
     this.currcat = undefined
     await this.getquest();
   },
+  computed:{
+    // displayquest:function(){
+
+    // },
+    // cataquest:function(){
+      
+    // }
+  }
   
 };
 </script>
