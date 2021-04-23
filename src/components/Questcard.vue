@@ -4,7 +4,7 @@
 
             <v-img
             :class="rounded"
-             :src='ImageUrl'
+             :src='ImageUrl + "?rand="+rand'
              full-width
             :aspect-ratio="16/9"
             
@@ -13,6 +13,9 @@
                 <v-list-item>
                   <v-list-item-content >
                     <v-list-item-title><span style="font-size: 20px; font-weight:bold;">{{Name}}</span></v-list-item-title>
+                    <div>
+                      {{Image}}
+                    </div>
                   </v-list-item-content>
                 </v-list-item>
             <v-list-item three-line  style="margin-top:-3%;">
@@ -67,15 +70,15 @@ export default {
     data(){
       return{
         ImageUrl :'',
-        qid:''
+        qid:'',
+        rand:1
       }
     },
     methods: {
       collapse(Detail) {
-
         this.Detail = Detail
-
       },
+
       gotodetail(){
         this.$router.push({ path: this.qid });
       }
@@ -91,8 +94,14 @@ export default {
         }     
 
         this.qid = '/quest/id/'+this.Qid
+    },
+      watch: {
+    Image:function(){
+      this.$forceUpdate();
     }
-    
+
+
+  },
 
 
 }
