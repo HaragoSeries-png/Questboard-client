@@ -99,7 +99,7 @@
             style="margin-bottom:7%; "
             id="iq"
             :rules="rules"
-            counter="25"
+            counter="30"
             placeholder="Quest Name"
             hint="Baby sister,Tutor"
             v-model="questname"
@@ -285,6 +285,9 @@ export default {
       console.log('quest not working1');
       if (this.duedate == "") {
         alertField.innerHTML += "<li>*Please full fill</li>";
+      }
+      if (this.category == "") {
+        alertField.innerHTML += "<li>*Please select category</li>";
       }
       console.log('quest not working2');
       if (alertField.innerHTML == "") this.sendquest();

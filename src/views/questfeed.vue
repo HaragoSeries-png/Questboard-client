@@ -40,6 +40,7 @@
     >
     <h1>
          {{pages}}
+         {{caca}}
     </h1>
   
       <v-autocomplete
@@ -232,12 +233,18 @@ export default {
             return this.catDisplay.length ? Math.ceil(this.catDisplay.length / this.rowsPerPage) : 0
         },
         catDisplay(){
-            if(this.currcat == 'All'){
-              console.log("currcat is " + this.currcat);
-              return this.quests;
-            }
-            
-            return this.quests.filteredList(r=>r.category == this.currcat)
+          console.log('muda '+typeof this.currcat)
+          if(this.currcat=='All'){
+            console.log("currcat is al " + this.currcat);
+            return this.quests;
+          }
+
+          console.log('ty '+typeof this.quests)
+          let t =  this.quests.filter((r)=>{
+            console.log(this.currcat)
+            return r.category===this.currcat 
+          })
+          return t
         }
     },
   watch: {
@@ -248,6 +255,11 @@ export default {
       await this.getquest();
     },
     currpage:function(){
+      this.disPlay=[]
+      this.filteredList();
+ 
+    },
+    currcat:function(){
       this.filteredList();
     }
 
@@ -266,18 +278,17 @@ export default {
         this.quests = await a.quest;
     },
        filteredList() {
-            this.disPlay = [];
-            var firstIndex;
-            if (this.currpage == 1) {
-                firstIndex = 0;
-            } else{
-                firstIndex = (this.currpage-1) * this.rowsPerPage;
-            }
-            console.log(firstIndex + " firstIndex ");
-            var showData = this.catDisplay.slice(firstIndex, firstIndex + this.rowsPerPage);
-            console.log('this data = ' + showData)
-            this.disPlay = showData;
-            
+         this.disPlay=[]
+          console.log('fill '+this.currcat)
+          this.disPlay = [];
+          var firstIndex;
+          if (this.currpage == 1) {
+              firstIndex = 0;
+          } else{
+              firstIndex = (this.currpage-1) * this.rowsPerPage;
+          }
+          var showData = this.catDisplay.slice(firstIndex, firstIndex + this.rowsPerPage);
+          this.disPlay = showData;            
         },
 
     changePage(i) {
@@ -287,13 +298,8 @@ export default {
     changeCat(i) {
       this.currpage = 1;
       this.currcat = i;
-      this.getquest();
     },
-    changeCatm(i) {
-      i = i.target.value;
-      this.currcat = i;
-      this.getquest();
-    },
+  
     getc(value) {
       console.log(value);
     },
@@ -306,7 +312,7 @@ export default {
       currpage: "",
       currcat: "All",
       masseage: "",
-      disPlay:"",
+      disPlay:[],
       items: [
         "All",
         "Handicraft",
@@ -448,7 +454,7 @@ export default {
   },
   created: async function () {
     this.currpage = 1;
-    this.currcat = undefined;
+    this.currcat = 'All';
     await this.getquest();
     this.filteredList();
   },
