@@ -232,9 +232,11 @@ export default {
             return this.catDisplay.length ? Math.ceil(this.catDisplay.length / this.rowsPerPage) : 0
         },
         catDisplay(){
-            if(values == ' '){
-              
+            if(this.currcat == 'All'){
+              console.log("currcat is " + this.currcat);
+              return this.quests;
             }
+            
             return this.quests.filteredList(r=>r.category == this.currcat)
         }
     },
@@ -302,7 +304,7 @@ export default {
       quests: "",
       pagenum: "",
       currpage: "",
-      currcat: "",
+      currcat: "All",
       masseage: "",
       disPlay:"",
       items: [
