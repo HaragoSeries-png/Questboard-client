@@ -221,6 +221,7 @@
 <script>
 import Questcard from "../components/Questcard";
 import QuestService from "@/service/questService";
+
 export default {
   name: "QuestFeed",
   components: {

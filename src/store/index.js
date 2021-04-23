@@ -14,7 +14,7 @@ export default new Vuex.Store({
     token: localStorage.getItem('token') || '',
     islog: localStorage.getItem('islogin') || false,
     userfullname: localStorage.getItem('fullname') || '',
-
+    allquest: localStorage.getItem('allquest')|| [],
     // Maybe Unused
     currentUser: '',
     count: 0,
@@ -29,7 +29,16 @@ export default new Vuex.Store({
     getcount(state) { return state.count },
     getinfoma(state) { return state.userinfoma },
     getuserid(state) { return state.userid },
-    getnoti(state) {  return JSON.parse(state.notification) },
+    getnoti(state) { 
+      try {
+        return JSON.parse(state.notification) 
+      } catch (error) {
+        return false
+      }
+        
+
+    },
+    getallquest(state) {  return JSON.parse(state.allquest) },
     getAll(state) { return [state.islog, state.currentUser, state.userfullname, state.userinfoma] }
   },
   mutations: {
@@ -54,7 +63,7 @@ export default new Vuex.Store({
     logout(state) {
       localStorage.setItem('uid', '')
       localStorage.setItem('fullname', '')
-      localStorage.setItem('notificaton', '')
+      localStorage.setItem('notificaton', [])
       state.token = '',
       state.islog = false,
       state.userid = '',
@@ -69,12 +78,16 @@ export default new Vuex.Store({
       state.userfullname = localStorage.getItem('fullname') || ''
     },
     senoti(state,value){
-      console.log('v '+value)
       localStorage.setItem('notificaton',JSON.stringify(value));
       state.noti = value
+      
       this.commit('update')
     },
-    setcount: (state, value) => state.count = value,
+    setcount(state, value){ state.count = value},
+    setallquest(state,value){
+      state.allquest=value
+      localStorage.setItem('allquest',value)
+    }
   },
   actions: {
     authen(context, value) { context.commit('logon', value) },
@@ -88,6 +101,9 @@ export default new Vuex.Store({
     setnoti(context,value){
       
       context.commit('senoti',value)
+    },
+    loadquest(context,value){
+      context.commit('setallquest',value)
     }
   },
   modules: {
