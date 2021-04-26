@@ -191,6 +191,7 @@
 <script>
 import QuestService from "@/service/questService";
 
+
 export default {
   name: "Create Quest",
   created() {
@@ -204,6 +205,7 @@ export default {
       ("0" + today.getDate()).slice(-2);
     this.current_date = now;
   },
+
   data() {
     return {
       icon: "mdi-upload",
@@ -293,7 +295,6 @@ export default {
       if (alertField.innerHTML == "") this.sendquest();
       console.log('quest has been send');
     },
-
     sendquest: async function() {
       let formData = new FormData();
       // files
@@ -321,6 +322,8 @@ export default {
   },
 };
 </script>
+
+
 
 <style scoped>
 * {

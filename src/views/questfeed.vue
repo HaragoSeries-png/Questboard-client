@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg">
     <!-- <div>
       <select
         class="category-drop"
@@ -36,26 +36,28 @@
         margin-left: auto;
         margin-right: auto;
         margin-top: 3%;
+        color:white;
+        padding:16px;
       "
     >
-    <h1>
-         {{pages}}
-         {{caca}}
-    </h1>
-  
+ 
       <v-autocomplete
+        disable-lookup
         v-model="caca"
         :items="items"
         label="Select Category"
         persistent-hint
-        prepend-icon="mdi-magnify"
-        color="#73c2fb"
-        style="margin-bottom: 8%"
+       prepend-icon="mdi-magnify"
+        color="white;"
+        style="margin-bottom: 8%;"
+        @change="changeCat(caca)"
+        :background-color="red"
       >
-        <template v-slot:append-outer>
-          <div class="s_btn" @click="changeCat(caca)">Search</div>
-        </template>
+  
+
       </v-autocomplete>
+      
+
     </div>
     <center>
       <div v-if="currcat == 'Education'">
@@ -197,25 +199,24 @@
         </Questcard>
       </v-col>
     
-      <v-col>
-          <center>
-             <v-pagination circle :total-visible="7"  v-model="currpage" :length="pages"></v-pagination>
-      </center>
+    </v-row>
+    
         <center>
-          <div v-if="!masseage">
+          <div v-if="pages==0">
             <h1>There is no result</h1>
             <v-img
               :aspect-ratio="16 / 9"
               width="500"
-              src="https://image.dek-d.com/27/0780/2231/128808139"
+              style="margin-top:3%;height:50vh;"
+              src="../assets/n_result1.png"
             >
+            <!-- https://image.dek-d.com/27/0780/2231/128808139 -->
             </v-img>
           </div>
         </center>
-      </v-col>
-      <div style="display: none"></div>
-    </v-row>
- 
+   <center style="margin-top:5%;padding-bottom:5%;">
+             <v-pagination v-if="pages!==0" circle :total-visible="7"  v-model="currpage" :length="pages"></v-pagination>
+      </center>
   </div>
 </template>
 
@@ -247,6 +248,7 @@ export default {
           return t
         }
     },
+    
   watch: {
     "$route.params.page": async function () {
       await this.getquest();
@@ -267,14 +269,17 @@ export default {
   },
   methods: {
     getquest: async function () {
+
       console.log("cat " + this.currcat);
       let a = await QuestService.getquest(this.currpage - 1, this.currcat).then(
         (res) => {
           return res;
         }
       );
+        
         this.masseage = true;
         this.quests = [];
+        console.log(this.masseage);
         this.quests = await a.quest;
     },
        filteredList() {
@@ -453,14 +458,19 @@ export default {
     };
   },
   created: async function () {
+  
     this.currpage = 1;
     this.currcat = 'All';
     await this.getquest();
     this.filteredList();
   },
 };
+
 </script>
+
+
 <style scoped>
+
 .s_btn {
   padding: 6px;
   font-size: 18px;
@@ -476,6 +486,7 @@ export default {
   background-color: #73c2fb;
   color: white;
 }
+
 .page {
   width: 300px;
   text-align: center;
@@ -483,5 +494,8 @@ export default {
 .bar {
   display: flex;
   justify-content: space-around;
+}
+.v-icon {
+    color: white !important;
 }
 </style>
