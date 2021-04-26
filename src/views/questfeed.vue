@@ -61,7 +61,7 @@
     </div>
     <center>
       <div v-if="currcat == 'Education'">
-        <v-carousel :show-arrows="false" cycle="3" max-width="300">
+        <v-carousel :show-arrows="false" cycle="3" width="300">
           <v-carousel-item
             v-for="(item, i) in itemsrcedu"
             :key="i"
@@ -94,7 +94,7 @@
       </div>
 
       <div v-else-if="currcat == 'Advice'">
-        <v-carousel :show-arrows="false" cycle="3" max-width="300">
+        <v-carousel :show-arrows="false" cycle="3" width="300">
           <v-carousel-item
             v-for="(item, i) in itemsrcadvi"
             :key="i"
@@ -164,11 +164,12 @@
         </h1>
       </div>
       <div v-else-if="currcat == 'Traffic'">
-        <v-carousel :show-arrows="false" cycle="3" max-width="300">
+        <v-carousel :show-arrows="false" cycle="3" max-width="300" style="margin-top:25%:">
           <v-carousel-item
             v-for="(item, i) in itemsrctraf"
             :key="i"
             :src="item.src"
+            
             reverse-transition="fade-transition"
           ></v-carousel-item>
         </v-carousel>
@@ -384,7 +385,7 @@ export default {
         },
         {
           src:
-            "https://cdn.pixabay.com/photo/2018/07/25/08/58/business-3560917_1280.jpg",
+            "https://cdn.pixabay.com/photo/2016/11/08/05/10/students-1807505_1280.jpg",
         },
       ],
       itemsrcacci: [
@@ -470,7 +471,15 @@ export default {
 
 
 <style scoped>
+.bg{
 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top:1%;
+  z-index: -50;
+  opacity: 0.9;
+}
 .s_btn {
   padding: 6px;
   font-size: 18px;
@@ -494,8 +503,10 @@ export default {
 .bar {
   display: flex;
   justify-content: space-around;
-}
-.v-icon {
+}.v-icon {
     color: white !important;
 }
+.carousel-item img {
+        height:100vh!important ;
+    }
 </style>
