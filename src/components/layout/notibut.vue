@@ -23,6 +23,7 @@
         <v-list-item
           v-for="(item) in noti.slice().reverse()"
           :key="item._id"
+          id="notilist"
         >
          
           <v-list-item-title>{{ item.message }}
@@ -69,8 +70,13 @@ export default {
             let a = await notifyService.getnoti(false)           
             if(a.sucess){ 
               console.log('new')
-              this.$store.dispatch("setnoti", a.notify );          
+              await this.$store.dispatch("setnoti", a.notify ); 
+              this.noti = a.notify
+
+              this.$forceUpdate()  
+              this.$router.go()      
             }
+          
           }           
         },
         loop(){           
@@ -94,6 +100,10 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
+#notilist:hover{
+  background-color: rgb(236, 236, 236);
+
+}
 </style>

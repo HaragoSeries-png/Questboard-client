@@ -4,7 +4,7 @@
 
             <v-img
             :class="rounded"
-             :src='Imurl + "?rand="+rand'
+             :src='Imurl'
              full-width
             :aspect-ratio="16/9"
             
@@ -87,11 +87,11 @@ export default {
     },
     created(){
         this.collapse(this.Detail)
-        if (this.Image != "default.png"){
-          this.ImageUrl = this.$store.state.gurl + this.Image+"?version=1";
+        if (this.Image == "default.png"){
+          this.ImageUrl = this.$store.state.gurl + this.Image
         }   
         else{
-          this.ImageUrl= "default.png"
+          this.ImageUrl= this.Image
         }     
 
         this.qid = '/quest/id/'+this.Qid
@@ -122,7 +122,7 @@ export default {
         },
       Imurl(){
         if (this.Image != "default.png"){
-          return this.$store.state.gurl + this.Image+"?version=1";
+          return this.Image
         }   
         else{
           return "default.png"+"?version=1"

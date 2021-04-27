@@ -13,7 +13,6 @@
             <!-- <span style="color: lightgrey; margin-left: 2%">@junearza007</span> -->
           </h3>
           <v-divider></v-divider>
-
           <!-- Introduce -->
           <div id="profileIntroduce">
             <h4 style="font-weight: bold">
@@ -352,11 +351,12 @@ export default {
     await this.getinfoma();
 
     this.profilePic = "miku.gif";
-    if (this.profile.infoma.proimage)
-      this.profilePic = this.$store.state.gurl + this.profile.infoma.proimage;
-
-    console.log("Pic " + this.profilePic);
-
+    
+    
+    if (this.profile.infoma.proimage){
+         this.profilePic= this.profile.infoma.proimage
+    }   
+     
     if (this.profile.infoma.skill)
       this.profileSkill = this.profile.infoma.skill;
     if (this.profile.infoma.education)

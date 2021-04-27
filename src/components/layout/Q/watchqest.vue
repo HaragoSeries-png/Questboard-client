@@ -485,7 +485,12 @@ export default {
   },
   created: async function() {
     await this.getinfoma();
-    this.questPic = this.$store.state.gurl + this.quest.image;
+    if(this.quest.image=='default.png'){
+      this.questPic = this.$store.state.gurl + this.quest.image;
+    }
+    else{
+      this.questPic = this.quest.image
+    }
 
     this.conInfor = this.quest.contributor.map((con) => {
       let de = { conName: con.infoma.firstname, conRate: 0 };
