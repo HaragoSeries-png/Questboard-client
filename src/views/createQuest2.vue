@@ -86,7 +86,7 @@
           
           </center>
 
-          <div class="btn-box" style="margin-top:1.5%;">
+          <div class="btn-box" style="margin-top:10%;">
             <button type="button" id="Next1" @click="nClick1()">Next</button>
           </div>
         </form>
@@ -170,13 +170,12 @@
                           style="margin-bottom:45%;font-size:12px;margin-top:5%;"
                         ></v-textarea>
 
-
+           <div id="alertField" style="margin-top:-35%;color:red;"></div>
           <div class="btn-box">
             <button type="button" id="Back2" @click="bClick2()">Back</button>
             <button type="button"  @click="checkAll()">Submit</button>
           </div>
         </form>
-        <div id="alertField"></div>
         <div class="step-row">
           <div id="progress"></div>
           <div class="step-col"><small>Step1</small></div>
@@ -290,6 +289,9 @@ export default {
       }
       if (this.category == "") {
         alertField.innerHTML += "<li>*Please select category</li>";
+      }
+      if(this.numberofcon <= 0){
+        alertField.innerHTML += "<li>*Number of Contributor cant be less than 0</li>";
       }
       console.log('quest not working2');
       if (alertField.innerHTML == "") this.sendquest();
