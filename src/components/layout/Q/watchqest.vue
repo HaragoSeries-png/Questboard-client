@@ -6,7 +6,10 @@
           <div class="section1">
             <center>
               <div class="pic">
-                <v-img height="400" width="370" :src="questPic"></v-img>
+                <v-img height="400" width="370" 
+                :src="questPic"
+                >
+                </v-img>
               </div>
             </center>
 
@@ -543,7 +546,8 @@ export default {
     isstart:function(){
       let qstatus = this.quest.status
       return qstatus=='inprogress'
-    }
+    },
+    
   },
 };
 </script>

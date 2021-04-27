@@ -272,6 +272,9 @@ export default {
         const file = this.files;
         console.log(file);
         this.url = URL.createObjectURL(file);
+        console.log("url "+this.url)
+       
+
       }
     },
     chooseFiles() {

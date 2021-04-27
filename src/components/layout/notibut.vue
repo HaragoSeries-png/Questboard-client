@@ -21,12 +21,16 @@
        </div>
        <v-divider></v-divider>
         <v-list-item
-          v-for="(item) in noti"
+          v-for="(item) in noti.slice().reverse()"
           :key="item._id"
         >
          
-          <v-list-item-title>{{ item.message }}   </v-list-item-title>
-    
+          <v-list-item-title>{{ item.message }}
+          </v-list-item-title>
+          <v-list-item-subtitle>
+            {{item.questname}}
+            
+          </v-list-item-subtitle>  
         </v-list-item>
              
       </v-list>

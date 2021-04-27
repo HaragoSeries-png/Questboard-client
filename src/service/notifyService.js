@@ -8,6 +8,7 @@ class notifyService {
         console.log('noti ser')
         console.log('force '+ force)
         let a = await axios.get(url,{params:{force:force}}).then(res=>{return res.data})
+        console.log('notify '+a.notify)
         return a
     }
 }
