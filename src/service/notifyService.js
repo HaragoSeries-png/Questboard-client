@@ -2,6 +2,7 @@ import axios from 'axios'
 
 axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
 const url = '/api/noti'
+// const url = 'http://localhost:5000/api/noti'
 
 class notifyService {   
     static async getnoti(force){
