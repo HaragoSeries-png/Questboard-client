@@ -179,10 +179,11 @@
         </h1>
       </div>
     </center>
-    <v-row style="margin-left: 5%; margin-right: 5%">
-      <v-col
+    <v-row id="card" style="margin-left: 5%; margin-right: 5%">
+      <v-col id="vcol"
         cols="12"
-        md="3"
+        md="6"
+        lg="3"
         style="padding-bottom: 2%"
         v-for="(item, index) in disPlay"
         :key="index"
@@ -216,7 +217,7 @@
           </div>
         </center>
    <center style="margin-top:5%;padding-bottom:5%;">
-             <v-pagination v-if="pages!==0" circle :total-visible="7"  v-model="currpage" :length="pages"></v-pagination>
+             <v-pagination v-if="pages!==0" circle :total-visible="7"  v-model="currpage" :length="pages" id="btn"></v-pagination>
       </center>
   </div>
 </template>
@@ -509,4 +510,16 @@ export default {
 .carousel-item img {
         height:100vh!important ;
     }
+@media screen and (max-width: 960px){
+  #vcol{
+    margin-left: 30%;
+  }
+  
+}
+@media screen and (max-width: 768px){
+  #vcol{
+    margin-left: 20%;
+  }
+  
+}
 </style>
