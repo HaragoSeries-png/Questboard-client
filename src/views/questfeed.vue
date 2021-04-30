@@ -61,7 +61,7 @@
     </div>
     <center>
       <div v-if="currcat == 'Education'">
-        <v-carousel :show-arrows="false" cycle="3" width="300">
+        <v-carousel :show-arrows="false" cycle="3" width="200" height="300">
           <v-carousel-item
             v-for="(item, i) in itemsrcedu"
             :key="i"
@@ -79,7 +79,7 @@
       </div>
 
       <div v-else-if="currcat == 'Handicraft'">
-        <v-carousel :show-arrows="false" cycle="3" max-width="300">
+        <v-carousel :show-arrows="false" cycle="3" width="300" height="300">
           <v-carousel-item
             v-for="(item, i) in itemsrchandi"
             :key="i"
@@ -94,7 +94,7 @@
       </div>
 
       <div v-else-if="currcat == 'Advice'">
-        <v-carousel :show-arrows="false" cycle="3" width="300">
+        <v-carousel :show-arrows="false" cycle="3" width="300" height="300" >
           <v-carousel-item
             v-for="(item, i) in itemsrcadvi"
             :key="i"
@@ -108,7 +108,7 @@
         </h1>
       </div>
       <div v-else-if="currcat == 'Accident'">
-        <v-carousel :show-arrows="false" cycle="3" max-width="300">
+        <v-carousel :show-arrows="false" cycle="3" max-width="300" height="300">
           <v-carousel-item
             v-for="(item, i) in itemsrcacci"
             :key="i"
@@ -122,7 +122,7 @@
         </h1>
       </div>
       <div v-else-if="currcat == 'Housework'">
-        <v-carousel :show-arrows="false" cycle="3" max-width="300">
+        <v-carousel :show-arrows="false" cycle="3" max-width="300" height="300" >
           <v-carousel-item
             v-for="(item, i) in itemsrchouse"
             :key="i"
@@ -136,7 +136,7 @@
         </h1>
       </div>
       <div v-else-if="currcat == 'Find friends'">
-        <v-carousel :show-arrows="false" cycle="3" max-width="300">
+        <v-carousel :show-arrows="false" cycle="3" max-width="300" height="300" >
           <v-carousel-item
             v-for="(item, i) in itemsrcfind"
             :key="i"
@@ -150,7 +150,7 @@
         </h1>
       </div>
       <div v-else-if="currcat == 'Food and home'">
-        <v-carousel :show-arrows="false" cycle="3" max-width="300">
+        <v-carousel :show-arrows="false" cycle="3" max-width="300" height="300"  >
           <v-carousel-item
             v-for="(item, i) in itemsrcfood"
             :key="i"
@@ -164,7 +164,7 @@
         </h1>
       </div>
       <div v-else-if="currcat == 'Traffic'">
-        <v-carousel :show-arrows="false" cycle="3" max-width="300" style="margin-top:25%:">
+        <v-carousel :show-arrows="false" cycle="3" max-width="300" height="300"   >
           <v-carousel-item
             v-for="(item, i) in itemsrctraf"
             :key="i"
