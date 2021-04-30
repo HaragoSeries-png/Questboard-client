@@ -6,7 +6,10 @@
           <div class="section1">
             <center>
               <div class="pic">
-                <v-img height="400" width="370" :src="questPic"></v-img>
+                <v-img height="400" width="370" 
+                :src="questPic"
+                >
+                </v-img>
               </div>
             </center>
 
@@ -482,7 +485,12 @@ export default {
   },
   created: async function() {
     await this.getinfoma();
-    this.questPic = this.$store.state.gurl + this.quest.image;
+    if(this.quest.image=='default.png'){
+      this.questPic = this.$store.state.gurl + this.quest.image;
+    }
+    else{
+      this.questPic = this.quest.image
+    }
 
     this.conInfor = this.quest.contributor.map((con) => {
       let de = { conName: con.infoma.firstname, conRate: 0 };
@@ -543,7 +551,8 @@ export default {
     isstart:function(){
       let qstatus = this.quest.status
       return qstatus=='inprogress'
-    }
+    },
+    
   },
 };
 </script>

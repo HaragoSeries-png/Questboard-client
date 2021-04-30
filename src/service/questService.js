@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const url = '/api/quest'
+const url = 'https://questboard-server.herokuapp.com/api/quest'
 
 class questService {
     static async createquest(text) {
@@ -9,7 +9,9 @@ class questService {
         return { suc: a.success }
     }
     static async getquest() {
+        
         let a = await axios.get(url+'/feed').then(res=>{return res.data})
+
         return {suc:a.success,quest:a.quest} 
     }
     static async getquestinfo(value) {

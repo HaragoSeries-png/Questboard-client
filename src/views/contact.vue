@@ -64,7 +64,7 @@
 
                
                   <img
-                    src="https://cdn.pixabay.com/photo/2014/02/27/16/10/tree-276014__340.jpg"
+                    src="../assets/1_pic4ab.png"
                     style="
                           width: 100%; height:35vh;
                            min-height: 100%;border-radius:15px 15px 0  0;margin-right:1%;"
@@ -79,7 +79,7 @@
               <div class="m_card">
                 <div class="img">
                   <img
-                    src="https://cdn.pixabay.com/photo/2019/06/29/04/00/fisherman-4305368__340.jpg"
+                    src="../assets/2_pic4ab.png"
                     alt=""
                     width="300px;"   style="
                           width: 100%;height:35vh;
@@ -95,7 +95,7 @@
               <div class="m_card">
                 <div class="img">
                   <img
-                    src="https://cdn.pixabay.com/photo/2015/09/09/16/05/forest-931706__340.jpg"
+                    src="../assets/3_pic4ab.png"
                     alt=""
                     width="300px;"   style="
                           width: 100%;height:35vh;
@@ -114,7 +114,7 @@
               <div class="m_card">
                 <div class="img">
                   <img
-                    src="https://cdn.pixabay.com/photo/2016/11/14/04/45/elephant-1822636__340.jpg"
+                    src="../assets/4_pic4ab.png"
                     alt=""
                     width="300px;"   style="
                           width: 100%;height:35vh;
@@ -130,7 +130,7 @@
               <div class="m_card">
                 <div class="img">
                   <img
-                    src="https://cdn.pixabay.com/photo/2016/05/05/02/37/sunset-1373171__340.jpg"
+                    src="../assets/5_pic4ab.png"
                     alt=""
                     width="300px;"   style="
                           width: 100%;height:35vh;
@@ -146,11 +146,11 @@
               <div class="m_card">
                 <div class="img">
                   <img
-                    src="https://cdn.pixabay.com/photo/2017/01/14/12/59/iceland-1979445__340.jpg"
+                    src="../assets/6_pic4ab.png"
                     alt=""
                     width="300px;"   style="
                           width: 100%;
-                           min-height: 100%;border-radius:15px 15px 0  0;margin-right:1%;"
+                           min-height: 100%;border-radius:15px 15px 0  0;margin-right:1%;height:35vh;"
                   />
                 </div>
                 <div class="detail">

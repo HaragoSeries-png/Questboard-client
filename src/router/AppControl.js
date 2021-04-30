@@ -28,7 +28,7 @@ const routes = [
     { path: '/createQuest2', component: createQuest2 },
     { path: '/lab', component: lab },
     { path: '/admin', component: admin_approve },
-    { path : '/quest/id/:id',component : quest},
+    { path : '/quest/id/:id',name:'questdetail',component : quest},
     { path : '/myquest',component : myquest},
     { path : '/mywork',component : mywork},
     { path : '/aboutus',component : aboutUs}

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Swal from "sweetalert2";
 
-const url = '/api/auth'
+const url = 'https://questboard-server.herokuapp.com/api/auth'
 class authService {
     static async login(text) {
         let a = await axios.post(url + '/login', text).then(res => { return res.data })

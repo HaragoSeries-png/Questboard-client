@@ -1,10 +1,10 @@
 <template>
 
-        <v-card class="card" style="width:300px, max-height:400px"   >
+        <v-card class="card">
 
             <v-img
             :class="rounded"
-             :src='Imurl + "?rand="+rand'
+             :src='Imurl'
              full-width
             :aspect-ratio="16/9"
             
@@ -40,7 +40,7 @@
               </div>
 
 
-                <v-list-item-subtitle style="font-size: 13px;">{{date}}</v-list-item-subtitle>
+                <v-list-item-subtitle style="font-size: 13px;">{{dateDisplay}}</v-list-item-subtitle>
             </v-list-item-content>
             </v-list-item>
             
@@ -74,6 +74,7 @@ export default {
         rand:1
       }
     },
+  
     methods: {
       collapse(Detail) {
         this.Detail = Detail
@@ -86,11 +87,11 @@ export default {
     },
     created(){
         this.collapse(this.Detail)
-        if (this.Image != "default.png"){
-          this.ImageUrl = this.$store.state.gurl + this.Image+"?version=1";
+        if (this.Image == "default.png"){
+          this.ImageUrl = this.$store.state.gurl + this.Image
         }   
         else{
-          this.ImageUrl= "default.png"
+          this.ImageUrl= this.Image
         }     
 
         this.qid = '/quest/id/'+this.Qid
@@ -101,9 +102,27 @@ export default {
       }
     },
     computed:{
+       dateDisplay(){
+         let d = new Date(this.date)
+         let months = [
+              'January',
+              'February',
+              'March',
+              'April',
+              'May',
+              'June',
+              'July',
+              'August',
+              'September',
+              'October',
+              'November',
+              'December'
+]
+         return  d.getDate() + "  " + months[d.getMonth()] + "  " + d.getFullYear()
+        },
       Imurl(){
         if (this.Image != "default.png"){
-          return this.$store.state.gurl + this.Image+"?version=1";
+          return this.Image
         }   
         else{
           return "default.png"+"?version=1"
@@ -139,7 +158,12 @@ body {
   gap: 500px;
 }
 .card {
-  box-shadow: 0 0 5px rgb(0, 0, 0);
+  box-shadow: 10 10 10px rgb(0, 0, 0);
+  width:300px;
+  max-height:400px;
+}
+.card:hover{
+ box-shadow:10px 0px 10px 20px #54d2d2;
 }
 .card__img {
   width: 100%;
