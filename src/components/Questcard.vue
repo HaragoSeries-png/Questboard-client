@@ -266,12 +266,12 @@ body {
     margin-left: 5%;
     margin-right: 5%;
     width: auto;
-    align-content: center;
     grid-template-columns: repeat(1, 1fr);
   }
 }
 @media screen and (max-width: 1024px) {
   .Questcards {
+    align-content: center;
     max-width: 450px;
     margin-left: 5%;
     margin-right: 5%;
