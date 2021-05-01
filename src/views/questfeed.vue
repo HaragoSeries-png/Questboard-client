@@ -1,5 +1,6 @@
 <template>
   <div class="bg">
+    
     <!-- <div>
       <select
         class="category-drop"
@@ -40,7 +41,7 @@
         padding:16px;
       "
     >
- 
+   
       <v-autocomplete
         disable-lookup
         v-model="caca"
@@ -219,17 +220,26 @@
    <center style="margin-top:5%;padding-bottom:5%;">
              <v-pagination v-if="pages!==0" circle :total-visible="7"  v-model="currpage" :length="pages" id="btn"></v-pagination>
       </center>
+      <v-overlay :value="isLoading">
+      <v-progress-circular
+        indeterminate
+        size="64"
+      ></v-progress-circular>
+    </v-overlay>
+    
   </div>
 </template>
 
 <script>
 import Questcard from "../components/Questcard";
 import QuestService from "@/service/questService";
+// import loading from 'vue-loading-overlay';
 
 export default {
   name: "QuestFeed",
   components: {
     Questcard,
+    // loading
   },
   computed: {
         pages () {
@@ -265,12 +275,13 @@ export default {
     currcat:function(){
       this.filteredList();
     }
+    
 
 
   },
   methods: {
     getquest: async function () {
-
+      // this.isLoading = true
       console.log("cat " + this.currcat);
       let a = await QuestService.getquest(this.currpage - 1, this.currcat).then(
         (res) => {
@@ -282,8 +293,10 @@ export default {
         this.quests = [];
         console.log(this.masseage);
         this.quests = await a.quest;
+        // this.isLoading = false
     },
        filteredList() {
+        //  this.isLoading = true
          this.disPlay=[]
           console.log('fill '+this.currcat)
           this.disPlay = [];
@@ -294,7 +307,14 @@ export default {
               firstIndex = (this.currpage-1) * this.rowsPerPage;
           }
           var showData = this.catDisplay.slice(firstIndex, firstIndex + this.rowsPerPage);
-          this.disPlay = showData;            
+          this.disPlay = showData;  
+          // (this.pages!=0)&& setTimeout(()=>{
+          //   this.isLoading = false 
+          // },3000)
+          if(this.pages>0){
+            this.isLoading = false 
+          }
+                   
         },
 
     changePage(i) {
@@ -312,6 +332,9 @@ export default {
   },
   data() {
     return {
+      isLoading: true,
+      fullPage: false,
+      loader: 'bars',
       rowsPerPage : 16,
       quests: "",
       pagenum: "",
@@ -459,7 +482,7 @@ export default {
     };
   },
   created: async function () {
-  
+    
     this.currpage = 1;
     this.currcat = 'All';
     await this.getquest();

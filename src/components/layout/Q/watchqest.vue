@@ -457,6 +457,7 @@ export default {
       }
     },
     getinfoma: async function() {
+      
       let questid = this.$route.params.id;
 
       let re = await questService.getquestinfo(questid).then((res) => {
@@ -469,7 +470,7 @@ export default {
       this.ownername = re.owner.name;
       this.conenfor =re.coninfor
       this.rating = this.quest.rate;
-
+      this.isLoading = false
       console.log("complete");
       console.log(this.quest);
     },
@@ -510,6 +511,7 @@ export default {
   },
   data() {
     return {
+      isLoading:"",
       quest: "",
       questPic: "",
       questRate: 3,

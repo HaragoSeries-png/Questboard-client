@@ -102,12 +102,14 @@ export default {
     },
     sendim: async function() {
       console.log("SENDIMG");
+      this.isLoading =true
       if (this.files ) {
         let formData = new FormData();
         formData.append("image", this.files);
         let suc = await profileService.uploadimg(formData).then((res) => {
           return res;
         });
+        this.isLoading =false
         if (suc) {
           Swal.fire(
             "<alert-title>Complete!</alert-title>",
@@ -123,6 +125,7 @@ export default {
           );
         }
       } else {
+        this.isLoading =false
         Swal.fire(
           "<alert-title>Error!</alert-title>",
           "<alert-subtitle>Data Missing.</alert-subtitle>",
@@ -139,6 +142,7 @@ export default {
       picHoverText: "Upload",
       files: null,
       texthover: "Upload",
+      isLoading:false
     };
   },
 };

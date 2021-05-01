@@ -260,6 +260,7 @@ export default {
   },
   data() {
     return {
+      isLoading:false,
       icon: "mdi-upload",
       items: ["Handicraft", "Advice", "Education", "Accident", "Housework", "Find friend", "Food and home", "Traffic"],
       Pic1: "https://pbs.twimg.com/media/EBBMoBNU4AA2DXn.jpg",
@@ -304,7 +305,7 @@ export default {
 
 
     sendquest: async function() {
-
+      this.isLoading =true
      
       
       let formData = new FormData();
@@ -327,6 +328,7 @@ export default {
         return res.suc;
       });
       console.log("logsuc" + suc);
+      
       if (suc) this.$router.push({ path: "/feed" });
       else alert("fail");
     },
