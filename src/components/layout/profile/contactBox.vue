@@ -22,7 +22,7 @@ export default {
   methods: {
     getIconLink() {
       if (this.Title == "Facebook")
-        return "http://ecx.images-amazon.com/images/I/21-leKb-zsL._SL500_AA300_.png";
+        return "https://image.flaticon.com/icons/png/512/124/124010.png";
       else if (this.Title == "LINE")
         return "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/LINE_logo.svg/600px-LINE_logo.svg.png";
       else if (this.Title == "Call")

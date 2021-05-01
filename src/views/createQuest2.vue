@@ -4,8 +4,10 @@
       <div class="a" style="margin-bottom:5%;">
         unyong
       </div>
-    
-      <div class="container">
+    <center>
+
+   
+      <div class="container" style="margin-left:auto;margin-right:auto;">
         <form id="Form1">
           <center>
             <div class="section1">
@@ -183,6 +185,7 @@
           <div class="step-col"><small>Step3</small></div>
         </div>
       </div>
+       </center>
     </div>
   </div>
 </template>
