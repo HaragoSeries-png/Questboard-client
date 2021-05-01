@@ -525,7 +525,7 @@ export default {
       dialog2: false,
       dialog3: false,
       dialog4: false,
-      selectHelperStatus: [true,true,false,true],
+      selectHelperStatus: [],
       rating:0,
       remain:0,
     };
@@ -570,7 +570,7 @@ export default {
       //   }
       // })
       // return c
-      return this.selectHelperStatus.filter(Boolean).length;
+      return this.selectHelperStatus.filter(Boolean).length+this.quest.contributor.length;
     }
     
   },
