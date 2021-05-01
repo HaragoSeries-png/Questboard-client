@@ -8,7 +8,7 @@
              full-width
             :aspect-ratio="16/9"
             
-             ></v-img>
+             >{{getqid}}</v-img>
 
                 <v-list-item>
                   <v-list-item-content >
@@ -81,7 +81,7 @@ export default {
       },
 
       gotodetail(){
-        this.$router.push({ path: this.qid });
+        this.$router.push({ path: this.getqid });
       }
         
     },
@@ -93,7 +93,7 @@ export default {
         else{
           this.ImageUrl= this.Image
         }     
-
+        this.qid =''
         this.qid = '/quest/id/'+this.Qid
     },
     watch: {
@@ -127,6 +127,8 @@ export default {
         else{
           return "default.png"+"?version=1"
         }  
+      },getqid(){
+        return '/quest/id/'+this.Qid
       }
     }
 
