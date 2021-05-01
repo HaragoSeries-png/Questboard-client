@@ -12,7 +12,9 @@
                 </v-img>
               </div>
             </center>
+{{remain}}
 
+{{cremain}}
             <v-card-actions class="Rate">
               <div class="statusQuest">
                 <div v-if="quest.status == 'pending'">
@@ -82,6 +84,7 @@
                 </v-col>
               </v-row>
               <template v-for="item in conInfor">
+                
                 <v-list-item :key="item.index">
                   <v-row style="border-top:1px solid gray">
                     <v-col cols="8" md="8">
@@ -373,6 +376,7 @@
 import questService from "@/service/questService";
 import Swal from "sweetalert2";
 
+
 export default {
   name: "questInfo",
   methods: {
@@ -407,6 +411,13 @@ export default {
       }
     },
     async sendHelperSelected() {
+      if(this.cremain>this.quest.numberofcon){
+        return Swal.fire(
+          "<alert-title>Something wrong</alert-title>",
+          "<alert-subtitle></alert-subtitle>",
+          "fail"
+        );
+      }
       let suc = await questService
         .waitselect(this.quest.wait, this.quest._id, this.selectHelperStatus)
         .then((res) => {
@@ -444,13 +455,6 @@ export default {
           "fail"
         );
       }
-
-
-
-
-
-
-
     },
     getinfoma: async function() {
       let questid = this.$route.params.id;
@@ -460,7 +464,7 @@ export default {
       });
 
       this.quest = re.quest;
-
+      this.remain = re.owner.remain
       this.ownerID = re.owner.ID;
       this.ownername = re.owner.name;
       this.conenfor =re.coninfor
@@ -481,6 +485,9 @@ export default {
         this.dialog4 = false
         this.$router.go()
       }
+    },
+    tt(){
+      this.selectHelperStatus.push(1)
     }
   },
   created: async function() {
@@ -493,7 +500,7 @@ export default {
     }
 
     this.conInfor = this.quest.contributor.map((con) => {
-      let de = { conName: con.infoma.firstname, conRate: 0 };
+      let de = { conName: con.infoma.firstname,conID:con._id, conRate: 0 };
       return de;
     });
 
@@ -516,8 +523,9 @@ export default {
       dialog2: false,
       dialog3: false,
       dialog4: false,
-      selectHelperStatus: [],
+      selectHelperStatus: [true,true,false,true],
       rating:0,
+      remain:0,
     };
   },
   computed: {
@@ -552,6 +560,16 @@ export default {
       let qstatus = this.quest.status
       return qstatus=='inprogress'
     },
+    cremain:function() {   
+      // let c =0
+      // this.selectHelperStatus.forEach(s=>{
+      //   if(s){
+      //     c++
+      //   }
+      // })
+      // return c
+      return this.selectHelperStatus.filter(Boolean).length;
+    }
     
   },
 };

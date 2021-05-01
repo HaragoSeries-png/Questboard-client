@@ -235,7 +235,6 @@ export default {
             return this.catDisplay.length ? Math.ceil(this.catDisplay.length / this.rowsPerPage) : 0
         },
         catDisplay(){
-          console.log('muda '+typeof this.currcat)
           if(this.currcat=='All'){
             console.log("currcat is al " + this.currcat);
             return this.quests;

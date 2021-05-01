@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-const url = 'https://questboard-server.herokuapp.com/api/quest'
+// const url = 'https://questboard-server.herokuapp.com/api/quest'
+const url = 'http://localhost:5000/api/quest'
 
 class questService {
     static async createquest(text) {
@@ -39,6 +40,11 @@ class questService {
     static async startquest(quest_id){
 
         let a = await axios.put(url+'/start',{quest_id:quest_id}).then(res => { return res.data })
+        return a.success
+    }
+    static async comquest(quest_id){
+
+        let a = await axios.put(url+'/complete',{quest_id:quest_id}).then(res => { return res.data })
         return a.success
     }
 }
