@@ -8,7 +8,7 @@
              full-width
             :aspect-ratio="16/9"
             
-             >{{getqid}}</v-img>
+             ></v-img>
 
                 <v-list-item>
                   <v-list-item-content >

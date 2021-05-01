@@ -12,9 +12,6 @@
                 </v-img>
               </div>
             </center>
-{{remain}}
-
-{{cremain}}
             <v-card-actions class="Rate">
               <div class="statusQuest">
                 <div v-if="quest.status == 'pending'">
@@ -57,6 +54,14 @@
                 v-if="aldy"
               >
                 you apllied this quest already
+              </v-btn>
+              <v-btn
+                color="black"
+                text
+                style="margin-top:2%;font-size:20px;display:inline;text-align:center;"
+                v-if="isContri"
+              >
+                you are contributor 
               </v-btn>
 
 </center>
@@ -149,6 +154,12 @@
             
               <v-spacer></v-spacer>
               <span style="text-align:center;"> {{quest.contributor.length}}/{{ quest.numberofcon }}</span>
+            </v-card-actions>
+            <v-card-actions class="pa-4">
+              Date
+            
+              <v-spacer></v-spacer>
+              <span style="text-align:center;"> {{dateDisplay}}</span>
             </v-card-actions>
 
             <div class="pa-4" style="margin-top:-1%;">
@@ -305,7 +316,7 @@
                 color="white "
                 text
                 style="margin-top:2%;font-size:20px; background-color:#388e3c;float:right"
-                @click.stop="dialog = true"
+                @click.stop="checklog"
                 v-if="!condi"
               >
                 Apply
@@ -381,6 +392,7 @@ export default {
   name: "questInfo",
   methods: {
     async completed() {
+      
       let suc = await questService.acceptquest(this.quest._id).then((res) => {
         return res;
       });
@@ -487,8 +499,11 @@ export default {
         this.$router.go()
       }
     },
-    tt(){
-      this.selectHelperStatus.push(1)
+    checklog(){
+      if(!this.$store.getters.isLoggedIn){
+        return this.$router.push('/login')
+      }
+      this.dialog =true
     }
   },
   created: async function() {
@@ -535,8 +550,11 @@ export default {
       return this.uid == this.ownerID;
     },
     aldy: function() {
-      let n = this.quest.wait.some(w=> w._id==this.uid)||this.quest.contributor.some(c=> c._id==this.uid);
+      let n = this.quest.wait.some(w=> w._id==this.uid);
       return n;
+    },
+    isContri:function () {
+      return this.quest.contributor.some(c=> c._id==this.uid)
     },
     condi: function() {
       return this.aldy || this.isowner;
@@ -571,7 +589,25 @@ export default {
       // })
       // return c
       return this.selectHelperStatus.filter(Boolean).length+this.quest.contributor.length;
-    }
+    },
+    dateDisplay(){
+         let d = new Date(this.quest.duedate)
+         let months = [
+              'January',
+              'February',
+              'March',
+              'April',
+              'May',
+              'June',
+              'July',
+              'August',
+              'September',
+              'October',
+              'November',
+              'December'
+]
+         return  d.getDate() + "  " + months[d.getMonth()] + "  " + d.getFullYear()
+    },
     
   },
 };
