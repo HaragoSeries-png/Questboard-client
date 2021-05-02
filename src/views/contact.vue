@@ -171,10 +171,9 @@
         <v-form
     ref="form"
     v-model="valid"
-    lazy-validation
+
     style="width:60%;margin-top:5%;"
   >
-    
 
     <v-text-field
       v-model="email"
@@ -224,12 +223,19 @@ export default {
         this.$refs.form.resetValidation()
       },
       async send(){
-         await profileService.sendmess({email:this.email,message:this.message})
-         Swal.fire(
-            "<alert-title>You message has been send</alert-title>",
+        if(!this.valid){
+          return Swal.fire(
+            "<alert-title>please fill a data</alert-title>",
             "<alert-subtitle></alert-subtitle>",
-            "success"
-          );
+            "error"
+          )
+        }
+        await profileService.sendmess({email:this.email,message:this.message}).then(Swal.fire(
+          "<alert-title>You message has been send</alert-title>",
+          "<alert-subtitle></alert-subtitle>",
+          "success"
+        ))
+         
       },
       warp(){
 
@@ -244,7 +250,7 @@ export default {
       this.$emit("setTitle", "Contact us");
     },
   data: () => ({
-        valid: true,
+      valid: false,
       name: '',
       nameRules: [
         v => !!v || 'Name is required',

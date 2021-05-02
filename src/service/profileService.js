@@ -59,6 +59,7 @@ class profileService {
         return a
     }
     static async sendmess(data){
+        console.log(data)
         let a = await axios.post(url+'/contact',data).then(res=>{return res.data})
         return a
     }
