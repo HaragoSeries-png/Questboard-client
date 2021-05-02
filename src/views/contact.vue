@@ -225,7 +225,7 @@ export default {
       async send(){
         if(!this.valid){
           return Swal.fire(
-            "<alert-title>please fill a data</alert-title>",
+            "<alert-title>please fill the datail</alert-title>",
             "<alert-subtitle></alert-subtitle>",
             "error"
           )
