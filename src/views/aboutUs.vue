@@ -367,7 +367,10 @@
 
 <script>
 export default {
-name:'aboutUs'
+name:'aboutUs',
+created() {
+this.$emit("setTitle", "About us");
+}
 }
 </script>
 

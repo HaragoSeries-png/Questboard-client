@@ -174,13 +174,7 @@
     lazy-validation
     style="width:60%;margin-top:5%;"
   >
-    <v-text-field
-      v-model="name"
-      :counter="10"
-      :rules="nameRules"
-      label="Name"
-      required
-    ></v-text-field>
+    
 
     <v-text-field
       v-model="email"
@@ -243,6 +237,9 @@ export default {
         return this.$router.push('/signup')
         
       }
+    },
+    created(){
+      this.$emit("setTitle", "Contact us");
     },
   data: () => ({
         valid: true,
