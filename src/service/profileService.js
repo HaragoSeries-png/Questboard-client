@@ -58,5 +58,9 @@ class profileService {
         let a = await axios.get('/api/noti').then(res=>{return res.data})
         return a
     }
+    static async sendmess(data){
+        let a = await axios.post(url+'/contact',data).then(res=>{return res.data})
+        return a
+    }
 }
 export default profileService

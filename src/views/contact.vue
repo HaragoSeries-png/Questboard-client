@@ -216,6 +216,7 @@
 
 <script>
 import Swal from "sweetalert2";
+import profileService  from "../service/profileService" 
 export default {
   name: "Contact",
   methods: {
@@ -228,7 +229,8 @@ export default {
       resetValidation () {
         this.$refs.form.resetValidation()
       },
-      send(){
+      async send(){
+         await profileService.sendmess({email:this.email,message:this.message})
          Swal.fire(
             "<alert-title>You message has been send</alert-title>",
             "<alert-subtitle></alert-subtitle>",
