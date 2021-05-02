@@ -190,7 +190,7 @@
                 text
                 style="float:left;margin-top:2%;font-size:15px;margin-left:3.5%;" 
                 class="button_black" 
-                @click="toFeed()"
+                @click="$router.back()"
               >
                 Back
               </v-btn>

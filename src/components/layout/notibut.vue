@@ -2,23 +2,29 @@
   
   <div id="loginitems" v-if="status">
     
-     <v-menu offset-y :nudge-width="200"  >
+     <v-menu offset-y :nudge-width="200">
       <template v-slot:activator="{ on, attrs }">
          
         <v-btn
-          color="#FF598F"
-          dark
+          :color="onAlarm ? '#ececec' : '#E30B5C'"
           v-bind="attrs"
           v-on="on"
           @click="cl()"
+          style="border:1px solid #E30B5C;"
         >  
-          <v-icon>
+          <v-icon
+          :color="onAlarm ? '#E30B5C' : 'white'"
+          >
             
             mdi-bell
           </v-icon>
-          {{nnoti}}<!--  this is number of new noti -->
+    <div class="bord_font">
+       <span class="font_Bell">{{nnoti}}</span>
+    </div>
         </v-btn>
       </template>
+    
+
       <v-list>
        <div style="text-align:center;font-weight:bold;font-size:13px;padding-top:2%;">
               Notification
@@ -52,7 +58,7 @@ export default {
         status: this.$store.getters.isLoggedIn,
         notiicon : 'alarm-light-outline',
         noti:[],
-        nnoti:''
+        nnoti:'',
       }
     },
     methods:{
@@ -61,6 +67,7 @@ export default {
           if(a.nnoti>0){
             this.nnoti = a.nnoti
             this.noti=a.notify
+            
           }  
           else{
             this.noti=a.notify
@@ -95,6 +102,10 @@ export default {
     computed:{
       isem:function() {
         return this.noti.length ==0
+      },
+      onAlarm:function(){
+       return (this.nnoti == '')  
+        
       }
     }
     
@@ -105,6 +116,17 @@ export default {
 
 #notilist:hover{
   background-color: rgb(236, 236, 236);
+}
+.bord_font{
+  
+ 
+}
+.font_Bell{
+  font-size:16px;
+}
 
+#loginitems{
+  position: absolute;
+  right:2%;
 }
 </style>

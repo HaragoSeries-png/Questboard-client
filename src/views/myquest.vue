@@ -14,14 +14,9 @@
           <v-col sm="8">
             <br />
             <center>
-              <v-btn
-                color="white "
-                text
-                style="margin-top:10%;font-size:20px; background-color:#1e88e5 ;"
-                @click="senddata('in progress')"
-              >
-                In progress
-              </v-btn>
+             <div class="i" @click="senddata('in progress')">
+               In progress
+             </div>
             </center>
 
             <p
@@ -48,14 +43,9 @@
           <v-col sm="8">
             <br />
             <center>
-              <v-btn
-                color="white"
-                text
-                style="font-size:20px; background-color:#689f38;margin-top:10%;"
-                @click="senddata('waiting')"
-              >
-                Waiting
-              </v-btn>
+           <div class="w" @click="senddata('waiting')"   >
+              WAITING
+           </div>
             </center>
             <v-spacer></v-spacer>
 
@@ -81,14 +71,9 @@
           <v-col sm="8">
             <br />
             <center>
-              <v-btn
-                color="white "
-                text
-                style="font-size:20px; background-color:#f57c00;margin-top:10%;"
-                @click="senddata('pending')"
-              >
-                Pending
-              </v-btn>
+              <div class="p"  @click="senddata('pending')" >
+                PENDING
+              </div>
             </center>
             <v-spacer></v-spacer>
 
@@ -114,22 +99,18 @@
     </div>
     <div id="noob">
       <center>
-        <v-btn
-          color="white "
-          text
-          style="font-size:20px; background-color:#00bcd4;margin-top:10%;"
-        >
+       <div class="c">
           <router-link
             @click="gotocreate"
             to="/createQuest2"
-            style="text-decoration:none;color:white;"
+            style="text-decoration:none;color:white;font-size:20px;text-transform:uppercase;"
           >
-            Create your quest
+            CREATE YOUR QUEST here !!
           </router-link>
-        </v-btn>
+           </div>
       </center>
     </div>
-    <div style="margin-top:40px;text-align:center;font-size:30px ">
+    <div style="margin-top:40px;text-align:center;font-size:30px;color:gray;visibility:hidden;">
       Information about your current quest
     </div>
 
@@ -201,7 +182,94 @@ export default {
   text-decoration: underline;
   margin-bottom:5%;
 }
+.i{
+width:80%;
+background-color:#1e88e5;
+font-size:20px;
+margin-top:10%;
+color:white;
+padding:5px;
+border-radius:6px;
+font-weight:bold;
+letter-spacing:1px;
+text-transform:uppercase;
+cursor: pointer;
+}
+.i:hover{
+  color:#1e88e5;
+  background-color: #ececec;
+  transition: .5s;
+}
 
+.w{
+width:80%;
+background-color:#689f38;
+font-size:20px;
+margin-top:10%;
+color:white;
+padding:5px;
+border-radius:6px;
+font-weight:bold;
+letter-spacing:1px;
+text-transform:uppercase;
+cursor: pointer;
+}
+.w:hover{
+  color:#689f38;
+  background-color: #ececec;
+  transition: .5s;
+}
+
+.p{
+width:80%;
+background-color:#f57c00;
+font-size:20px;
+margin-top:10%;
+color:white;
+padding:5px;
+border-radius:6px;
+font-weight:bold;
+letter-spacing:1px;
+text-transform:uppercase;
+cursor: pointer;
+}
+.p:hover{
+  color:#f57c00;
+  background-color: #ececec;
+  transition: .5s;
+}
+
+.c{
+color:white;
+background-color:#fe7773;
+margin-top:10%;
+width: 70%;
+align-items: center;
+padding:16px;
+border-radius:13px;
+}
+.c:hover{
+  background-color:crimson;
+  transition:1s;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.hover_i{
+  background-color: red;
+}
 @media screen and (max-width: 1072px) {
   .full-screen-bot {
     display: none;

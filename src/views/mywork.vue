@@ -14,14 +14,12 @@
           <v-col sm="8">
             <br />
             <center>
-              <v-btn
-                color="white "
-                text
-                style="margin-top:10%;font-size:20px; background-color:#1e88e5 ;"
+              <div
+               class="i"
                 @click="senddata('in progress')"
               >
                 In progress
-              </v-btn>
+              </div>
             </center>
 
             <p
@@ -48,14 +46,12 @@
           <v-col sm="8">
             <br />
             <center>
-              <v-btn
-                color="white"
-                text
-                style="font-size:20px; background-color:#689f38;margin-top:10%;"
+              <div
+                class="w"
                 @click="senddata('waiting')"
               >
                 Waiting
-              </v-btn>
+              </div>
             </center>
             <v-spacer></v-spacer>
 
@@ -81,14 +77,12 @@
           <v-col sm="8">
             <br />
             <center>
-              <v-btn
-                color="white "
-                text
-                style="font-size:20px; background-color:black;margin-top:10%;"
+              <div
+                class="p"
                 @click="senddata('complete')"
               >
                 Pending
-              </v-btn>
+              </div>
             </center>
             <v-spacer></v-spacer>
 
@@ -187,7 +181,75 @@ export default {
 #mobi-screen {
   display: none;
 }
+.i{
+width:80%;
+background-color:#1e88e5;
+font-size:20px;
+margin-top:10%;
+color:white;
+padding:5px;
+border-radius:6px;
+font-weight:bold;
+letter-spacing:1px;
+text-transform:uppercase;
+cursor: pointer;
+}
+.i:hover{
+  color:#1e88e5;
+  background-color: #ececec;
+  transition: .5s;
+}
 
+.w{
+width:80%;
+background-color:#689f38;
+font-size:20px;
+margin-top:10%;
+color:white;
+padding:5px;
+border-radius:6px;
+font-weight:bold;
+letter-spacing:1px;
+text-transform:uppercase;
+cursor: pointer;
+}
+.w:hover{
+  color:#689f38;
+  background-color: #ececec;
+  transition: .5s;
+}
+
+.p{
+width:80%;
+background-color:#f57c00;
+font-size:20px;
+margin-top:10%;
+color:white;
+padding:5px;
+border-radius:6px;
+font-weight:bold;
+letter-spacing:1px;
+text-transform:uppercase;
+cursor: pointer;
+}
+.p:hover{
+  color:#f57c00;
+  background-color: #ececec;
+  transition: .5s;
+}
+
+.c{
+color:white;
+background-color:#fe7773;
+margin-top:10%;
+width: 25%;
+padding:16px;
+border-radius:13px;
+}
+.c:hover{
+  background-color:crimson;
+  transition:1s;
+}
 @media screen and (max-width: 1072px) {
   .full-screen-bot {
     display: none;
