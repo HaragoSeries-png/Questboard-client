@@ -3,6 +3,7 @@ import axios from 'axios'
 axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
 
 const url = 'https://questboard-server.herokuapp.com/api/profile'
+// const url = 'http://localhost:5000/api/profile'
 
 class profileService {
     static async editprofile(text) {

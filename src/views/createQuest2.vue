@@ -187,6 +187,12 @@
           <div class="step-col"><small>Step3</small></div>
         </div>
       </div>
+      <v-overlay :value="isLoading">
+      <v-progress-circular
+        indeterminate
+        size="64"
+      ></v-progress-circular>
+    </v-overlay>
        </center>
     </div>
   </div>
@@ -212,6 +218,7 @@ export default {
 
   data() {
     return {
+      isLoading :false,
       icon: "mdi-upload",
       items: [
         "Handicraft",
@@ -306,6 +313,8 @@ export default {
       console.log('quest has been send');
     },
     sendquest: async function() {
+      
+      console.log(this.isLoading)
       let formData = new FormData();
       // files
 
@@ -321,11 +330,12 @@ export default {
       formData.append("tend", this.tend);
       formData.append("numberofcon", this.numberofcon);
       formData.append("duedate", this.duedate);
-
+      this.isLoading =true
       let suc = await QuestService.createquest(formData).then((res) => {
         return res.suc;
       });
       console.log("logsuc" + suc);
+      this.isLoading =true
       if (suc) this.$router.push({ path: "/feed" });
       else alert("fail");
     },

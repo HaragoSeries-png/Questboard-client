@@ -3,7 +3,7 @@
     <section id="hero">
       <div class="hero container">
         <h1>Quest board<span></span></h1>
-        <a href="#" type="button" class="cta" style="text-decoration:none;"
+        <a @click="warp" type="button" class="cta" style="text-decoration:none;"
           >Join Us</a
         >
         
@@ -234,6 +234,14 @@ export default {
             "<alert-subtitle></alert-subtitle>",
             "success"
           );
+      },
+      warp(){
+
+        if(this.$store.getters.isLoggedIn){
+          return this.$router.push('/feed')
+        }
+        return this.$router.push('/signup')
+        
       }
     },
   data: () => ({

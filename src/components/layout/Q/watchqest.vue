@@ -12,7 +12,6 @@
                 </v-img>
               </div>
             </center>
-
             <v-card-actions class="Rate">
               <div class="statusQuest">
                 <div v-if="quest.status == 'pending'">
@@ -56,6 +55,14 @@
               >
                 you apllied this quest already
               </v-btn>
+              <v-btn
+                color="black"
+                text
+                style="margin-top:2%;font-size:20px;display:inline;text-align:center;"
+                v-if="isContri"
+              >
+                you are contributor 
+              </v-btn>
 
 </center>
 
@@ -82,6 +89,7 @@
                 </v-col>
               </v-row>
               <template v-for="item in conInfor">
+                
                 <v-list-item :key="item.index">
                   <v-row style="border-top:1px solid gray">
                     <v-col cols="8" md="8">
@@ -146,6 +154,12 @@
             
               <v-spacer></v-spacer>
               <span style="text-align:center;"> {{quest.contributor.length}}/{{ quest.numberofcon }}</span>
+            </v-card-actions>
+            <v-card-actions class="pa-4">
+              Date
+            
+              <v-spacer></v-spacer>
+              <span style="text-align:center;"> {{dateDisplay}}</span>
             </v-card-actions>
 
             <div class="pa-4" style="margin-top:-1%;">
@@ -302,7 +316,7 @@
                 color="white "
                 text
                 style="margin-top:2%;font-size:20px; background-color:#388e3c;float:right"
-                @click.stop="dialog = true"
+                @click.stop="checklog"
                 v-if="!condi"
               >
                 Apply
@@ -373,10 +387,12 @@
 import questService from "@/service/questService";
 import Swal from "sweetalert2";
 
+
 export default {
   name: "questInfo",
   methods: {
     async completed() {
+      
       let suc = await questService.acceptquest(this.quest._id).then((res) => {
         return res;
       });
@@ -407,6 +423,13 @@ export default {
       }
     },
     async sendHelperSelected() {
+      if(this.cremain>this.quest.numberofcon){
+        return Swal.fire(
+          "<alert-title>Something wrong</alert-title>",
+          "<alert-subtitle></alert-subtitle>",
+          "fail"
+        );
+      }
       let suc = await questService
         .waitselect(this.quest.wait, this.quest._id, this.selectHelperStatus)
         .then((res) => {
@@ -444,15 +467,9 @@ export default {
           "fail"
         );
       }
-
-
-
-
-
-
-
     },
     getinfoma: async function() {
+      
       let questid = this.$route.params.id;
 
       let re = await questService.getquestinfo(questid).then((res) => {
@@ -460,12 +477,12 @@ export default {
       });
 
       this.quest = re.quest;
-
+      this.remain = re.owner.remain
       this.ownerID = re.owner.ID;
       this.ownername = re.owner.name;
       this.conenfor =re.coninfor
       this.rating = this.quest.rate;
-
+      this.isLoading = false
       console.log("complete");
       console.log(this.quest);
     },
@@ -481,6 +498,12 @@ export default {
         this.dialog4 = false
         this.$router.go()
       }
+    },
+    checklog(){
+      if(!this.$store.getters.isLoggedIn){
+        return this.$router.push('/login')
+      }
+      this.dialog =true
     }
   },
   created: async function() {
@@ -493,7 +516,7 @@ export default {
     }
 
     this.conInfor = this.quest.contributor.map((con) => {
-      let de = { conName: con.infoma.firstname, conRate: 0 };
+      let de = { conName: con.infoma.firstname,conID:con._id, conRate: 0 };
       return de;
     });
 
@@ -503,6 +526,7 @@ export default {
   },
   data() {
     return {
+      isLoading:"",
       quest: "",
       questPic: "",
       questRate: 3,
@@ -518,6 +542,7 @@ export default {
       dialog4: false,
       selectHelperStatus: [],
       rating:0,
+      remain:0,
     };
   },
   computed: {
@@ -525,8 +550,11 @@ export default {
       return this.uid == this.ownerID;
     },
     aldy: function() {
-      let n = this.quest.wait.some(w=> w._id==this.uid)||this.quest.contributor.some(c=> c._id==this.uid);
+      let n = this.quest.wait.some(w=> w._id==this.uid);
       return n;
+    },
+    isContri:function () {
+      return this.quest.contributor.some(c=> c._id==this.uid)
     },
     condi: function() {
       return this.aldy || this.isowner;
@@ -551,6 +579,34 @@ export default {
     isstart:function(){
       let qstatus = this.quest.status
       return qstatus=='inprogress'
+    },
+    cremain:function() {   
+      // let c =0
+      // this.selectHelperStatus.forEach(s=>{
+      //   if(s){
+      //     c++
+      //   }
+      // })
+      // return c
+      return this.selectHelperStatus.filter(Boolean).length+this.quest.contributor.length;
+    },
+    dateDisplay(){
+         let d = new Date(this.quest.duedate)
+         let months = [
+              'January',
+              'February',
+              'March',
+              'April',
+              'May',
+              'June',
+              'July',
+              'August',
+              'September',
+              'October',
+              'November',
+              'December'
+]
+         return  d.getDate() + "  " + months[d.getMonth()] + "  " + d.getFullYear()
     },
     
   },
