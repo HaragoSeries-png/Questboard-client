@@ -21,7 +21,7 @@
             <v-list-item three-line  style="margin-top:-3%;">
              <v-list-item-content>     
 
-               <div> 
+               <div id="detail"> 
                  <p  
                  v-if="Detail!=='undefined'" 
                  > 
@@ -182,8 +182,6 @@ body {
 }
 .card__content > p:first-of-type {
   margin-top: 0;
-
-
 }
 .card__content > h2:last-of-type {
   margin-bottom: 0;
@@ -196,6 +194,13 @@ body {
   background: #eeeeee;
   font-size: 0.8em;
   border-bottom: 2px solid #cccccc;
+}
+#detail{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  -webkit-box-orient: vertical;
 }
 .more {
   color: #6a966a;
