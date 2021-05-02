@@ -487,6 +487,7 @@ export default {
     this.currcat = 'All';
     await this.getquest();
     this.filteredList();
+    this.$emit("setTitle", "Questfeed");
   },
 };
 

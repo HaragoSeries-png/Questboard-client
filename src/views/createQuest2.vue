@@ -153,6 +153,7 @@
           </h3>
           <div>
             Deadline
+            <div>(Last day to apply quest)</div>
           </div>
          <input
                         type="date"

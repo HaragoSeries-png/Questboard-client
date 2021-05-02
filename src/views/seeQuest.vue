@@ -1,6 +1,7 @@
 <template>
   <div id="questDetail">
-    <Watchquest>
+
+    <Watchquest @setTitle='setpageTitle'>
       <div style="text-decoration: underline; margin-top: 5%;">Helper</div>
 
       <div style="margin-top: 5%">
@@ -88,6 +89,12 @@ export default {
       ],
     };
   },
+  methods: {
+      setpageTitle(value) {
+      this.$emit("setTitle", value);
+    }
+  },
+
 };
 </script>
 

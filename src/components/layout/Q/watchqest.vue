@@ -150,13 +150,13 @@
             </v-card-actions>
 
             <v-card-actions class="pa-4">
-              Number
+              Number of Contributor
             
               <v-spacer></v-spacer>
               <span style="text-align:center;"> {{quest.contributor.length}}/{{ quest.numberofcon }}</span>
             </v-card-actions>
             <v-card-actions class="pa-4">
-              Date
+              Deadline
             
               <v-spacer></v-spacer>
               <span style="text-align:center;"> {{dateDisplay}}</span>
@@ -523,6 +523,7 @@ export default {
     for (var i = 1; i <= this.quest.wait.length; i++) {
       this.selectHelperStatus.push(1 == 0);
     }
+    this.$emit("setTitle",this.quest.questname);
   },
   data() {
     return {
