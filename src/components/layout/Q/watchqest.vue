@@ -39,7 +39,7 @@
 
 
               <v-spacer></v-spacer>
-              <span style="color:black;font-size:24px;padding-right:2%;">Rank : </span>
+              <span style="color:black;font-size:24px;padding-right:2%;">Difficult : </span>
               <span :style="{ color: ratea.Color }" class="rateLabel">
                  {{ ratea.Label }}
               </span>
@@ -51,7 +51,7 @@
                 color="black"
                 text
                 style="margin-top:2%;font-size:20px;display:inline;text-align:center;"
-                v-if="aldy"
+                v-if="aldy || isContri"
               >
                 you apllied this quest already
               </v-btn>
@@ -61,7 +61,7 @@
                 style="margin-top:2%;font-size:20px;display:inline;text-align:center;"
                 v-if="isContri"
               >
-                you are contributor 
+                you are selected as contributor 
               </v-btn>
 
 </center>
@@ -198,7 +198,7 @@
 
 
             <v-btn
-                v-if="quest.status == 'inprogress'"
+                v-if="(quest.status == 'inprogress')||isowner"
                 color="white"
                 text
                 class="completeBox"
@@ -450,10 +450,10 @@ export default {
       }
     },
     async ratecon(){
-      alert('nani')
       let re = await questService.ratingcon(this.conInfor).then((res) => {
         return res;
       });
+      await questService.comquest(this.quest._id)
       if (re.suc) {
         Swal.fire(
           "<alert-title>You accept Helper!</alert-title>",
@@ -557,7 +557,7 @@ export default {
       return this.quest.contributor.some(c=> c._id==this.uid)
     },
     condi: function() {
-      return this.aldy || this.isowner;
+      return this.aldy || this.isowner||this.isContri;
     },
     ratea: function() {
       let r =  Math.max(this.rating * 2 - 1,0);    
