@@ -58,7 +58,7 @@ export default {
         status: this.$store.getters.isLoggedIn,
         notiicon : 'alarm-light-outline',
         noti:[],
-        nnoti:'4',
+        nnoti:'',
       }
     },
     methods:{
