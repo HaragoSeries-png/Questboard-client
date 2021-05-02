@@ -135,7 +135,7 @@
                         <v-select
                           :items="items"
                           id="ic"
-                          label="Default"
+                          label="Select Category"
                           style="margin-bottom:5%;"
                           dense
                           v-model="category"

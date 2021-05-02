@@ -109,7 +109,7 @@
           <v-select
             :items="items"
             id="ic"
-            placeholder="default"
+            placeholder="Category"
             style="margin-bottom:7%;"
             dense
             v-model="category"
@@ -120,6 +120,8 @@
             :rules="rules"
             counter="55"
             v-model="reward"
+            autocomplete="off"
+             hint="100 THB, Cola x 1"
             placeholder="Reward"
           ></v-text-field>
          <center> 
@@ -291,13 +293,13 @@ export default {
       alertField.innerHTML = "";
       console.log('quest not working1');
       if (this.duedate == "") {
-        alertField.innerHTML += "<li>*Please full fill</li>";
+        alertField.innerHTML += "<li>Please full fill</li>";
       }
       if (this.category == "") {
-        alertField.innerHTML += "<li>*Please select category</li>";
+        alertField.innerHTML += "<li>Please select category</li>";
       }
       if(this.numberofcon <= 0){
-        alertField.innerHTML += "<li>*Number of Contributor cant be less than 0</li>";
+        alertField.innerHTML += "<li>Number of Contributor cant be less than 0</li>";
       }
       console.log('quest not working2');
       if (alertField.innerHTML == "") this.sendquest();

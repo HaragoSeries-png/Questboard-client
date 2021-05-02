@@ -156,16 +156,16 @@
             </v-list-item-content>
           </v-list-item>
 
-          <v-list-item link :to="getuserLink()" color="#FF598F"   class="on_hover">
+          <v-list-item to="/createQuest2" color="#FF598F"   class="on_hover">
             <v-list-item-icon>
               <div class="titlefont">
-                <v-icon  style="color:#ffc76e" >mdi-login</v-icon>
+                <v-icon  style="color:#ffc76e" >mdi-folder-plus</v-icon>
               </div>
             </v-list-item-icon>
 
             <v-list-item-content>
               <div class="titlefont c_font">
-                Profile
+                Create Quest
               </div>
             </v-list-item-content>
           </v-list-item>
