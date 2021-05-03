@@ -62,6 +62,7 @@
                 hover
                 size="18"
               ></v-rating>
+              &nbsp;({{ this.profile.rating.N }} quest cleared.)
             </v-card-actions>
           </div>
 
