@@ -88,14 +88,16 @@
       >
         <v-list-item-content>
           <div style="text-align: center">
-            <v-btn :class="{ 'show-btns': hover }" @click="requestSave()">
+            <v-btn :class="{ 'show-btns': hover }" @click="requestSave()" style="background-color:#77dd77;color:white;">
               SAVE
             </v-btn>
             &nbsp;
             <v-btn
               :class="{ 'show-btns': hover }"
               @click="requestClose()"
-              style="margin-left:2%"
+              style="margin-left:2%;background-color:#ff6961;color:white;"
+             
+
             >
               Cancel
             </v-btn>

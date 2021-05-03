@@ -10,7 +10,73 @@
       <div class="container" style="margin-left:auto;margin-right:auto;">
         <form id="Form1">
           <center>
-            <div class="section1">
+           
+                                                                  <h3 style="margin-bottom:15%;color:black;font-weight:bold;">
+                                                                    Information
+                                                                  </h3>
+                                                                  <v-text-field
+                                                                    style="margin-bottom:7%; "
+                                                                    id="iq"
+                                                                    :rules="rules"
+                                                                    counter="30"
+                                                                    placeholder="Quest Name"
+                                                                    hint="Baby sister,Tutor"
+                                                                    v-model="questname"
+                                                                  ></v-text-field>
+                                                                  <v-select
+                                                                    :items="items"
+                                                                    id="ic"
+                                                                    placeholder="Category"
+                                                                    style="margin-bottom:7%;"
+                                                                    dense
+                                                                    v-model="category"
+                                                                  ></v-select>
+                                                                  <v-text-field
+                                                                    style="margin-bottom:7%;"
+                                                                    id="iq"
+                                                                    :rules="rules"
+                                                                    counter="55"
+                                                                    v-model="reward"
+                                                                    autocomplete="off"
+                                                                    hint="100 THB, Cola x 1"
+                                                                    placeholder="Reward"
+                                                                  ></v-text-field>
+                                                                <center> 
+                                                                <i class="material-icons"  style="margin-bottom:2%;font-size:25px;">person</i>
+                                                                </center>
+                                                                <div style="text-align:center;font-size:18px;color:gray">
+                                                                  Number of Contributor
+                                                                </div>
+                                                                    <span>
+                                                                  <input
+                                                                    type="number"
+                                                                    min="1"
+                                                                    id="num_per"
+                                                                    v-model="numberofcon"
+                                                                    
+                                                                    style=" border-top:1px solid white; border-left:1px solid white; border-right:1px solid white;margin-bottom:18%;outline:none;"
+                                                                  /> 
+                                                                    </span>
+                                                                  
+                                                             
+          
+          </center>
+
+          <div class="btn-box" style="margin-top:10%;">
+            <button type="button" id="Next1" @click="nClick1()">Next</button>
+          </div>
+        </form>
+
+
+
+
+
+
+
+
+
+        <form id="Form2">
+ <div class="section1">
               <div style="font-size:20px;font-weight:bold;margin-bottom:%;">
                 Choose Quest image
               </div>
@@ -85,67 +151,40 @@
                 ></v-file-input>
               </div>
             </div>
-          
-          </center>
+     <div class="btn-box">
+                                                                    <button type="button" id="Back1" @click="bClick1()">Back</button>
+                                                                    <button type="button" id="Next2" @click="nClick2()">Next</button>
+                                                                  </div>
 
-          <div class="btn-box" style="margin-top:10%;">
-            <button type="button" id="Next1" @click="nClick1()">Next</button>
-          </div>
+
+
+
         </form>
 
-        <form id="Form2">
-          <h3 style="margin-bottom:15%;color:black;font-weight:bold;">
-            Information
-          </h3>
-          <v-text-field
-            style="margin-bottom:7%; "
-            id="iq"
-            :rules="rules"
-            counter="30"
-            placeholder="Quest Name"
-            hint="Baby sister,Tutor"
-            v-model="questname"
-          ></v-text-field>
-          <v-select
-            :items="items"
-            id="ic"
-            placeholder="Category"
-            style="margin-bottom:7%;"
-            dense
-            v-model="category"
-          ></v-select>
-          <v-text-field
-            style="margin-bottom:7%;"
-            id="iq"
-            :rules="rules"
-            counter="55"
-            v-model="reward"
-            autocomplete="off"
-             hint="100 THB, Cola x 1"
-            placeholder="Reward"
-          ></v-text-field>
-         <center> 
-        <i class="material-icons"  style="margin-bottom:2%;font-size:25px;">person</i>
-        </center>
-        <div style="text-align:center;font-size:18px;color:gray">
-          Number of Contributor
-        </div>
-            <span>
-          <input
-            type="number"
-            min="1"
-            id="num_per"
-            v-model="numberofcon"
-            
-            style=" border-top:1px solid white; border-left:1px solid white; border-right:1px solid white;margin-bottom:18%;outline:none;"
-          /> 
-            </span>
-          
-          <div class="btn-box">
-            <button type="button" id="Back1" @click="bClick1()">Back</button>
-            <button type="button" id="Next2" @click="nClick2()">Next</button>
-          </div>
-        </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         <form id="Form3">
         <h3 style="margin-bottom:15%;color:black;font-weight:bold;">

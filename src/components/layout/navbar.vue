@@ -19,7 +19,7 @@
       </v-icon>
 
 
-            <span style="text-decoration: underline;padding-left:1%; " class="c_font"
+            <span style="padding-left:1%;text-decoration:none;cursor:pointer;" class="c_font"  @click="$router.push('/feed')"
               >Quest Board</span
             >
           </div>
@@ -38,7 +38,7 @@
           <br />
           <router-link
             :to="'/profile/id/' + this.$store.getters.getuserid"
-            style="font-size: 12px; color: orange"
+            style="font-size: 14px; color: orange"
             >View your profile</router-link
           >
         </div>
@@ -54,6 +54,7 @@
             :to="item.to"
             color="#FF598F"
             class="on_hover"
+            @click="clickEvent()"
           >
             <v-list-item-icon>
               <div class="titlefont"   >
@@ -71,11 +72,10 @@
         <div v-if="status">
         <v-list-group
         :value="true"
-        color="#FF598F"
-        
+        color="#ffc76e"
       >
         <template v-slot:activator >
-          <v-list-item-content>
+          <v-list-item-content  >
             <div class="titlefont c_font">
               <v-icon style="color:#ffc76e;padding-right:27px;" >mdi-account-circle</v-icon>
             Quest</div>
@@ -83,12 +83,12 @@
         </template>
           <v-list-item
             v-for="item in quest"
-            color="#FF598F"
             :key="item.title"
             link
             :to="item.to"
             style="padding-left:20%;"
             class="on_hover"
+            @click="clickEvent()"
           >
           
              <v-list-item-icon >
@@ -98,13 +98,8 @@
             <v-list-item-content style="font-size:11px;font-weight:bold;" class="c_font"  >
               {{item.title}}
             </v-list-item-content>
-          
-         
           </v-list-item>
-      
         </v-list-group>
-
-
         </div>
 
 
@@ -116,6 +111,7 @@
             :to="item.to"
             color="#FF598F"
             class="on_hover"
+            @click="clickEvent()"
           >
             <v-list-item-icon>
               <div>
@@ -142,6 +138,7 @@
             :to="item.to"
             color="#FF598F"
             class="on_hover"
+            @click="clickEvent()"
           >
             <v-list-item-icon>
               <div class="titlefont">
@@ -156,7 +153,7 @@
             </v-list-item-content>
           </v-list-item>
 
-          <v-list-item to="/createQuest2" color="#FF598F"   class="on_hover">
+          <v-list-item to="/createQuest2" color="#FF598F"   class="on_hover" @click="clickEvent()">
             <v-list-item-icon>
               <div class="titlefont">
                 <v-icon  style="color:#ffc76e" >mdi-folder-plus</v-icon>
@@ -296,6 +293,9 @@ export default {
     getuserLink() {
       return '/profile/id/' + this.$store.getters.getuserid
     },
+    clickEvent(){
+      this.drawer =! this.drawer
+    },
     linkProfile() {
       let profileLink = '/profile/id/' + this.$store.getters.getuserid
       this.$router.push({path: profileLink})
@@ -396,6 +396,7 @@ body {
 .on_hover:hover{
   background-color:rgba(  246,162,209,0.4);
 }
-
-
+.v-list-group--active > .v-list-group__header > .v-list-group__header__append-icon .v-icon{
+  color:#ffc76e;
+}
 </style>

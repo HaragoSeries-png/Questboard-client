@@ -30,7 +30,7 @@
                   >
                 </div>
                 <div v-else-if="quest.status == 'waiting'">
-                  <span style="background-color:#1e88e5;" class="statusBox">
+                  <span style="background-color:#689f38;" class="statusBox">
                     {{ quest.status }}</span
                   >
                 </div>
@@ -47,22 +47,23 @@
             </v-card-actions>
               <center>
   
-                 <v-btn
-                color="black"
-                text
-                style="margin-top:2%;font-size:20px;display:inline;text-align:center;"
-                v-if="aldy || isContri"
-              >
-                you apllied this quest already
-              </v-btn>
-              <v-btn
-                color="black"
-                text
-                style="margin-top:2%;font-size:20px;display:inline;text-align:center;"
-                v-if="isContri"
-              >
-                you are selected as contributor 
-              </v-btn>
+            
+               
+             
+
+            <div style="margin-top:2%;font-size:20px;display:inline;text-align:center;text-transform:uppercase;"      v-if="aldy || isContri"  >
+
+                   you apllied this quest already
+
+            </div>
+
+
+
+           
+
+              <div style="margin-top:2%;font-size:20px;display:inline;text-align:center;text-tranform:uppercase;" v-if="isContri" >
+                        you are selected as contributor 
+              </div>
 
 </center>
 
@@ -220,7 +221,7 @@
                 @click="dialog2 = true"
 
               >
-                See Helper
+                Contributor
               </v-btn>
 
               <v-btn
@@ -397,6 +398,7 @@ export default {
         return res;
       });
       if (suc) {
+        alert('hello1');
         Swal.fire(
           "<alert-title>You request is complete!</alert-title>",
           "<alert-subtitle>Please wait untill helper accepted</alert-subtitle>",
@@ -405,6 +407,7 @@ export default {
         this.dialog = false;
         this.$router.go();
       } else {
+        alert('hello2');
         Swal.fire(
           "<alert-title>Something wrong</alert-title>",
           "<alert-subtitle></alert-subtitle>",

@@ -39,6 +39,7 @@
         required
         dark
         autocomplete="off"
+        hint="Password require letter morn than 8"
       ></v-text-field>
 
       <v-text-field
@@ -55,7 +56,7 @@
 
       <br /><br />
       <div class="alertbox">
-        <ul id="alertField" class="p" style="color: red; font-size: 16px"></ul>
+        <ul id="alertField"   style=" font-size: 16px"></ul>
       </div>
     </div>
   </v-app>
@@ -87,7 +88,7 @@ export default {
       }
       else if (compass.length < 8)
         alertField.innerHTML +=
-          "<li>Password required more length than 8.</li>";
+          "<li>Password required length more than 8.</li>";
       else if (!this.conpassword)
         alertField.innerHTML += "<li>Please confirm your password.</li>";
       else if (this.password != this.conpassword)
@@ -206,7 +207,7 @@ input {
   margin-bottom: 20px;
 }
 
-p {
+.p {
   margin: 0;
   padding: 0;
   /* font-weight: bold; */

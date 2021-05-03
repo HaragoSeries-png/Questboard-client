@@ -2,15 +2,19 @@
   <div id="profileFromContact">
     <v-card max-width="auto" height="auto">
       <v-list class="overflow-y-auto" style="height: 480px; padding: 0px">
+        <center>
         <v-list-item-content>
           <v-list-item-title
-            class="headline mb-1"
-            style="margin: 3%; font-weight: bold;"
+            style="font-weight: bold;margin-top:2%;"
           >
-            EDIT Contact
+          <span style="font-size:25px;">
+               EDIT Contact
+          </span>
+           
           </v-list-item-title>
         </v-list-item-content>
-
+ </center>
+ <v-divider></v-divider>
         <div id="inputBox"></div>
 
         <v-list-item-content
@@ -19,6 +23,7 @@
           style="padding: 0; margin-left: 5%; margin-right: 5%"
         >
           <v-col cols="12" md="3">
+          
             <span
               style="font-size: 14px; font-weight: bold; text-transform: capitalize;"
             >
@@ -45,13 +50,14 @@
               <v-btn
                 :class="{ 'show-btns': hover }"
                 @click="sendUpdateObject()"
+                style="background-color:#77dd77;color:white;"
               >
                 Update
               </v-btn>
               <v-btn
                 :class="{ 'show-btns': hover }"
                 @click="requestClose()"
-                style="margin-left: 2%"
+                style="margin-left: 2%;background-color:#ff6961;color:white;"
               >
                 Exit
               </v-btn>

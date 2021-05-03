@@ -54,12 +54,32 @@
         @change="changeCat(caca)"
         :background-color="red"
       >
-  
-
       </v-autocomplete>
+      
+     
       
 
     </div>
+ 
+    <center> 
+          <router-link
+          class="ggmanfree"
+            @click="gotocreate"
+            to="/createQuest2"
+            style="text-decoration:none;"
+          >
+          <div class="createButton">
+            CREATE YOUR QUEST here !!
+                    </div>
+          </router-link>
+       </center>
+  
+
+
+
+
+
+
     <center>
       <div v-if="currcat == 'Education'">
         <v-carousel :show-arrows="false" cycle="3" width="200" height="300">
@@ -533,6 +553,38 @@ export default {
 .carousel-item img {
         height:100vh!important ;
     }
+    .c{
+color:white;
+background-color:#fe7773;
+margin-top:10%;
+align-items: center;
+padding:16px;
+border-radius:13px;
+}
+.c:hover{
+  background-color:crimson;
+  transition:1s;
+}
+.createButton{
+  margin-bottom:2%;
+  margin-top:-1%;
+  color:white;
+  background-color:#42a5f5
+  ;width:300px;
+  padding:16px;
+  font-size:15px;
+  border-radius:6px;
+  transition: .5s;
+  text-transform: uppercase;
+  border: 1px solid #42a5f5;
+}
+.createButton:hover{
+  transition: .5s;
+  color:#42a5f5;
+  background-color: white;
+
+}
+
 @media screen and (max-width: 960px){
   #vcol{
     margin-left: 30%;
@@ -542,6 +594,12 @@ export default {
 @media screen and (max-width: 768px){
   #vcol{
     margin-left: 20%;
+  }
+  
+}
+@media screen and (max-width:607px) {
+  .ggmanfree{
+    display:none;
   }
   
 }

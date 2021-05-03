@@ -238,6 +238,17 @@
         </div>
       </v-col>
     </v-row>
+    <center> 
+         <v-btn
+                color="black"
+                text
+                style="font-size:15px;margin-left:auto;margin-right:auto;margin-bottom:3%;margin-top:-1%;" 
+                class="button_black" 
+                @click="$router.back()"
+              >
+                Back
+              </v-btn>
+        </center>
     <v-divider></v-divider>
   </div>
 </template>
