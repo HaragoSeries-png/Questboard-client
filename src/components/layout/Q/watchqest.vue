@@ -138,7 +138,7 @@
 
             <v-divider></v-divider>
             <v-card-actions class="pa-4">
-              Contributor
+              Helper
               <v-spacer></v-spacer>
               <router-link :to="'/profile/id/' + ownerID" target="_blank">
                 <span style="text-align:center;"> {{ ownername }}</span>
