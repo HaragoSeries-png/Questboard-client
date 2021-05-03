@@ -51,7 +51,7 @@
                
              
 
-            <div style="margin-top:2%;font-size:20px;display:inline;text-align:center;text-transform:uppercase;"      v-if="aldy || isContri"  >
+            <div style="margin-top:2%;font-size:20px;display:inline;text-align:center;text-transform:uppercase;"      v-if="aldy "  >
 
                    You already applied this quest.
 
