@@ -479,6 +479,7 @@ export default {
           "fail"
         );
       }
+      this.$router.go();
     },
     getinfoma: async function() {
       

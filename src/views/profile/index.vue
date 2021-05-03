@@ -15,16 +15,21 @@
           <v-divider></v-divider>
           <!-- Introduce -->
           <div id="profileIntroduce">
-            <h4 style="font-weight: bold">
+            <h4 style="font-weight: bold;float-left;">
               Introduce
             </h4>
             <div
               style="color: gray; width: auto; min-height: 60px; display: block; font-size: 14px;"
             >
+             <a  style="float:right;"   v-if="!introBox && editable()" @click="introEdit(true) "
+                >Edit</a
+              >
+
               <div id="informationField" v-if="!introBox">
+                
                 {{ introNullCheck(profileInfo) }}
               </div>
-
+              
               <v-text-field
                 v-if="introBox"
                 v-model="profileInfoEdit"
@@ -32,15 +37,13 @@
                 counter
                 maxlength="120"
               ></v-text-field>
-              <div v-if="introBox" style="float: right;">
-                <a @click="sendInformation()">Save</a>
+              <div v-if="introBox" style="float: right;padding-top:2%;">
+                <a @click="sendInformation()" style="padding-right:30px;"  >Save</a>
                 &nbsp;
                 <a @click="introEdit(false)">Cancel</a>
               </div>
 
-              <br /><a v-if="!introBox && editable()" @click="introEdit(true)"
-                >Edit</a
-              >
+           
             </div>
           </div>
 
@@ -351,13 +354,13 @@ export default {
   created: async function() {
     await this.getinfoma();
 
-    this.profilePic = "miku.gif";
+    this.profilePic = "https://www.pngkey.com/png/detail/138-1388270_transparent-user-png-icon.png";
     
     
     if (this.profile.infoma.proimage){
          this.profilePic= this.profile.infoma.proimage
     }   
-     
+  
     if (this.profile.infoma.skill)
       this.profileSkill = this.profile.infoma.skill;
     if (this.profile.infoma.education)

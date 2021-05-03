@@ -179,10 +179,10 @@ export default {
   created: async function() {
     await this.getinfoma();
     
-    this.profilePic = "miku.gif"
+    this.profilePic = "https://scontent.fbkk12-4.fna.fbcdn.net/v/t1.6435-9/125375841_2098359920306330_2505210272876926708_n.jpg?_nc_cat=103&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=yU_-H7VbupAAX9uBuFw&_nc_ht=scontent.fbkk12-4.fna&oh=cf3565f6848e67a8c503134cf0d51c2d&oe=60B567CB"
     if (this.profile.infoma.proimage != "")
       this.profilePic = this.$store.state.gurl + this.profile.infoma.proimage;
-
+    console.log(this.profilePic);
     if (this.profile.infoma.skill != "")
       this.profileSkill = this.profile.infoma.skill;
     if (this.profile.infoma.education != "")

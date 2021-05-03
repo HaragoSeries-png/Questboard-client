@@ -8,7 +8,7 @@
     </div>
     <div style="margin-left: 60px;">
       <h4 style="fint-weight: bold">{{ Title }}</h4>
-      <div style="font-size: 10px;padding-top:3px;">
+      <div style="font-size: 15px;padding-top:3px;">
         {{ detailnullCheck(Detail) }}
       </div>
     </div>

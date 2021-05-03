@@ -77,11 +77,6 @@ import Swal from "sweetalert2";
 export default {
   name: "Profile-Box",
   props: ["profilePic", "editable"],
-  created(){
-
-    this.profilePic ="https://www.pngkey.com/png/detail/138-1388270_transparent-user-png-icon.png"
-    
-  },
   methods: {
     uploadimg() {
       document.getElementById("fileUpload").click();
