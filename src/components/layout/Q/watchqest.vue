@@ -16,23 +16,30 @@
               <div class="statusQuest">
                 <div v-if="quest.status == 'pending'">
                   <span style="background-color:#f57c00;" class="statusBox">{{
-                    quest.status
-                  }}</span>
+                    quest.status}}</span>
+                     <div class="detailInprogress">Helper is starting quest and contributor can start working.</div>
                 </div>
-                <div v-else-if="quest.status == 'inprogress'">
+
+                <div id="showWaiting"  v-else-if="quest.status == 'inprogress'">
                   <span style="background-color:#1e88e5;" class="statusBox">
                     {{ quest.status }}</span
                   >
+                    <div class="detailPending">Waiting for admin to approve</div>
                 </div>
-                <div v-else-if="quest.status == 'complete'">
+
+
+                <div id="showWaiting"   v-else-if="quest.status == 'complete'">
                   <span style="background-color:#689f38;" class="statusBox">
                     {{ quest.status }}</span
                   >
+                   <div class="detailWaiting">This quest is completed</div>
                 </div>
-                <div v-else-if="quest.status == 'waiting'">
+
+                <div  id="showWaiting"   v-else-if="quest.status == 'waiting'">
                   <span style="background-color:#689f38;" class="statusBox">
                     {{ quest.status }}</span
                   >
+                  <div class="detailWaiting">Waiting for contributor and confirm help.</div>
                 </div>
               
               </div>
@@ -726,8 +733,44 @@ table {
  background-color:green; 
  margin-left: 10%;
  font-size: 20px;
- 
 }
+#showWaiting:hover {
+  position:relative;
+}
+#showWaiting:hover + .detailWaiting {
+  animation: animate__fadeIn;
+  animation-duration:2s;
+  display: block;
+  
+}
+.detailWaiting{
+  position: absolute;
+  width: 300px;
+  top:200%;
+  color: #689f38;
+  animation: text 3s 1;
+  transition: 2s;
+}
+.detailInprogress{
+  position: absolute;
+  width: 300px;
+  top:200%;
+  color: #1e88e5;
+  animation: text 3s 1;
+  transition: 2s;
+}
+.detailPending{
+  position: absolute;
+  width: 300px;
+  top:200%;
+  color: #f57c00;
+  animation: text 3s 1;
+  transition: 2s;
+}
+
+
+
+
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Hammersmith+One&family=Lexend+Mega&display=swap");
 @media screen and (max-width: 956px) {
