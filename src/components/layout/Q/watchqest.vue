@@ -198,7 +198,7 @@
 
 
             <v-btn
-                v-if="(quest.status == 'inprogress')||isowner"
+                v-if="(quest.status == 'inprogress')&&isowner"
                 color="white"
                 text
                 class="completeBox"
