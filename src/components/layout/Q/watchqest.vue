@@ -677,25 +677,12 @@ export default {
       let dateNow = new Date()
       let dateDeadline = new Date(this.quest.duedate)
       let deadline = new Date(dateDeadline.getTime() - dateNow.getTime())
-      // let months = [
-      //         'January',
-      //         'February',
-      //         'March',
-      //         'April',
-      //         'May',
-      //         'June',
-      //         'July',
-      //         'August',
-      //         'September',
-      //         'October',
-      //         'November',
-      //         'December'
-      // ]
 
       if (deadline < 0) return 'Expired'
       else if (deadline.getUTCFullYear() - 1970 > 0) return false
       else if (deadline.getUTCMonth() > 0) return false
       else if (deadline.getUTCDate() - 1 > 0) return deadline.getUTCDate() - 1 + " Days left."
+      else if (deadline.getUTCDate() - 1 == 0) return "Expired this day."
       else return 'Expired'
     }
   },
