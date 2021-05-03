@@ -58,9 +58,9 @@
                
              
 
-            <div style="margin-top:2%;font-size:20px;display:inline;text-align:center;text-transform:uppercase;"      v-if="aldy || isContri"  >
+            <div style="margin-top:2%;font-size:20px;display:inline;text-align:center;text-transform:uppercase;"      v-if="aldy "  >
 
-                   you apllied this quest already
+                   You already applied this quest.
 
             </div>
 
@@ -69,7 +69,7 @@
            
 
               <div style="margin-top:2%;font-size:20px;display:inline;text-align:center;text-tranform:uppercase;" v-if="isContri" >
-                        you are selected as contributor 
+                        You are selected as contributor.
               </div>
 
 </center>
@@ -159,20 +159,26 @@
 
             <v-card-actions class="pa-4">
               Number of Accepted Contributor
+              <!-- ( {{quest.contributor.length}} / {{ quest.numberofcon }} ) -->
             
               <v-spacer></v-spacer>
-              <span style="text-align:center;"> {{quest.contributor.length}}/{{ quest.numberofcon }}</span>
+              <span style="text-align:center;">( {{quest.contributor.length}} / {{ quest.numberofcon }} ) <a @click="contributorListDialog = (quest.contributor.length > 0) ? true : false">
+                <span v-if="isowner" style="text-align:center;">View</span>
+              </a></span>
+              
+              
             </v-card-actions>
             <v-card-actions class="pa-4">
               Deadline
             
               <v-spacer></v-spacer>
-              <span style="text-align:center;"> {{dateDisplay}}</span>
+              <span style="text-align:center;"> {{dateDisplay}} <span style="text-align:center; color: red;"> {{(deadlineDisplay && quest.status != 'complete') ? '(' + deadlineDisplay + ')': ''}}</span></span>
+              
             </v-card-actions>
 
             <div class="pa-4" style="margin-top:-1%;">
               <div>
-                Details
+                Detail
               </div>
 
               <v-card
@@ -182,9 +188,9 @@
               >
                
 
-                <p style="font-size:14px;text-indent:20px;" v-if="quest.questdetail == underfined">
+                <p style="font-size:14px;text-indent:20px;" v-if="quest.questdetail == 'undefined'">
 
-                  no information
+                  - No Data -
                 </p>
                 <p v-else>
                     {{ quest.questdetail }}
@@ -213,43 +219,47 @@
                @click="dialog3 = true"
 
               >
-                  Quest Complete
+                  Complete your Quest
               </v-btn>
 
 
-
-
-
-              <v-btn
-                v-if="isowner && !isstart  && quest.status!='pending' && (quest.wait.length == 0)"
-                color="#ff6e40"
-                text
-                style="float: right; margin-top: 2%; font-size: 15px; background-color:white; margin-left: 3.5%; border: 1px solid #ff6e40"
+              <div v-if="quest.status != 'complete' && quest.status!='pending'">
+                <v-btn
+                  v-if="isowner && !isstart  && (quest.wait.length == 0)"
+                  color="#ff6e40"
+                  text
+                  style="float: right; margin-top: 2%; font-size: 15px; background-color:white; margin-left: 3.5%; border: 1px solid #ff6e40"
+                  
+                >
+                  Contributor ({{ quest.wait.length }})
+                </v-btn>
                 
-              >
-                Contributor ({{ quest.wait.length }})
-              </v-btn>
+                <v-btn
+                  v-if="isowner && !isstart && (quest.wait.length > 0)"
+                  color="white"
+                  text
+                  style="float: right; margin-top: 2%; font-size: 15px; background-color:#ff6e40; margin-left: 3.5%;"
+                  @click="dialog2 = true"
+                >
+                  Contributor ({{ quest.wait.length }})
+                </v-btn>
+
+                <v-btn
+                  v-if="isowner && !isstart && (quest.contributor.length >= 1)"
+                  color="white"
+                  text
+                  style="float: right; margin-top: 2%; font-size: 15px; background-color:#10ae10; margin-left: 3.5%;"
+                  @click="dialog4 = true"
+
+                >
+                  Start your quest
+                </v-btn>
+              </div>
+
+
+
               
-              <v-btn
-                v-if="isowner && !isstart  && quest.status!='pending' && (quest.wait.length > 0)"
-                color="white"
-                text
-                style="float: right; margin-top: 2%; font-size: 15px; background-color:#ff6e40; margin-left: 3.5%;"
-                @click="dialog2 = true"
-              >
-                Contributor ({{ quest.wait.length }})
-              </v-btn>
 
-              <v-btn
-                v-if="isowner && !isstart && quest.status != 'pending' && (quest.contributor.length >= 1)"
-                color="white"
-                text
-                style="float: right; margin-top: 2%; font-size: 15px; background-color:#10ae10; margin-left: 3.5%;"
-                @click="dialog4 = true"
-
-              >
-                Start quest
-              </v-btn>
               <v-dialog
                 v-model="dialog4"
                 max-width="450"
@@ -270,8 +280,8 @@
                     <br />
                     <br />
                     <span style="font-size:13px;color:black;">
-                      After your confirm you can't reject this quest except
-                      helper don't choose you.
+                      After your confirm. You will contact with you contributor by yourself.
+                      And you have to complete this quest in later.
                     </span>
                   </v-card-text>
 
@@ -396,6 +406,46 @@
           </div>
         </v-card>
       </v-dialog>
+
+      <!-- Contributor List -->
+      <v-dialog v-model="contributorListDialog" width="500px" height="300px" overlay>
+        <v-card style="background-color:#ececec">
+          <div id="helperBox" v-if="isowner">
+            <h3 style="text-align:center;margin-bottom:5%;">
+              Accepted contributor
+            </h3>
+            <v-row style="margin-left:0.5%;">
+              <v-col cols="10" md="9">
+                <p>
+                  Name
+                </p>
+              </v-col>
+
+              <v-col cols="2" md="3">
+                <p>
+                   
+                </p>
+              </v-col>
+            </v-row>
+            <template v-for="(item) in quest.contributor">
+              <v-list-item :key="item.index">
+                <v-row style="border-top:1px solid gray;" >
+                  <v-col cols="10" md="10"  >
+                  <router-link :to="'/profile/id/' + item._id" target="_blank">
+                    {{ item.infoma.firstname }}
+                  </router-link>
+                    
+                  </v-col>
+                  <v-col cols="2" md="2">
+                    
+                  </v-col>
+                </v-row>
+              </v-list-item>
+            </template>
+          </div>
+        </v-card>
+      </v-dialog>
+
     </v-container>
   </div>
 </template>
@@ -475,8 +525,8 @@ export default {
       await questService.comquest(this.quest._id)
       if (re.suc) {
         Swal.fire(
-          "<alert-title>You accept Helper!</alert-title>",
-          "<alert-subtitle>Please wait untill helper accepted</alert-subtitle>",
+          "<alert-title>You quest complete!</alert-title>",
+          "<alert-subtitle>Congrat! Your quest cleared.</alert-subtitle>",
           "success"
         );
       } else {
@@ -561,6 +611,7 @@ export default {
       dialog2: false,
       dialog3: false,
       dialog4: false,
+      contributorListDialog: false,
       selectHelperStatus: [],
       rating:0,
       remain:0,
@@ -629,7 +680,18 @@ export default {
 ]
          return  d.getDate() + "  " + months[d.getMonth()] + "  " + d.getFullYear()
     },
-    
+    deadlineDisplay() {
+      let dateNow = new Date()
+      let dateDeadline = new Date(this.quest.duedate)
+      let deadline = new Date(dateDeadline.getTime() - dateNow.getTime())
+
+      if (deadline < 0) return 'Expired'
+      else if (deadline.getUTCFullYear() - 1970 > 0) return false
+      else if (deadline.getUTCMonth() > 0) return false
+      else if (deadline.getUTCDate() - 1 > 0) return deadline.getUTCDate() - 1 + " Days left."
+      else if (deadline.getUTCDate() - 1 == 0) return "Expired this day."
+      else return 'Expired'
+    }
   },
 };
 </script>
