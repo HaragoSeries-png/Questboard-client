@@ -156,7 +156,7 @@
             
               <v-spacer></v-spacer>
               <span style="text-align:center;">( {{quest.contributor.length}} / {{ quest.numberofcon }} ) <a @click="contributorListDialog = (quest.contributor.length > 0) ? true : false">
-                <span style="text-align:center;">View</span>
+                <span v-if="isowner" style="text-align:center;">View</span>
               </a></span>
               
               
@@ -425,7 +425,7 @@
                 <v-row style="border-top:1px solid gray;" >
                   <v-col cols="10" md="10"  >
                   <router-link :to="'/profile/id/' + item._id" target="_blank">
-                    {{ item._id }}
+                    {{ item.infoma.firstname }}
                   </router-link>
                     
                   </v-col>
