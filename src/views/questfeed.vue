@@ -62,16 +62,10 @@
     </div>
  
     <center> 
-          <router-link
-          class="ggmanfree"
-            @click="gotocreate"
-            to="/createQuest2"
-            style="text-decoration:none;"
-          >
-          <div class="createButton">
+
+          <div  @click="gotocreate" class="createButton">
             CREATE YOUR QUEST here !!
                     </div>
-          </router-link>
        </center>
   
 
@@ -349,6 +343,9 @@ export default {
     getc(value) {
       console.log(value);
     },
+    gotocreate(){
+      this.$router.push({path: '/createQuest2'});
+    }
   },
   data() {
     return {

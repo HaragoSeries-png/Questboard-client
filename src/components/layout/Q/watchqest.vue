@@ -14,7 +14,7 @@
             </center>
             <v-card-actions class="Rate">
               <div class="statusQuest">
-                <div v-if="quest.status == 'pending'">
+                <div id="showWaiting" v-if="quest.status == 'pending'">
                   <span style="background-color:#f57c00;" class="statusBox">{{
                     quest.status}}</span>
                      <div class="detailInprogress">Helper is starting quest and contributor can start working.</div>
