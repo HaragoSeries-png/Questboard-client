@@ -131,15 +131,15 @@
 
             <v-divider></v-divider>
             <v-card-actions class="pa-4">
-              Create by
+              Contributor
               <v-spacer></v-spacer>
-              <router-link :to="'/profile/id/' + ownerID">
+              <router-link :to="'/profile/id/' + ownerID" target="_blank">
                 <span style="text-align:center;"> {{ ownername }}</span>
               </router-link>
             </v-card-actions>
 
             <v-card-actions class="pa-4">
-              Category
+              Quest Category
               <v-spacer></v-spacer>
               <span style="text-align:center;"> {{ quest.category }}</span>
             </v-card-actions>
@@ -151,7 +151,7 @@
             </v-card-actions>
 
             <v-card-actions class="pa-4">
-              Number of Contributor
+              Number of Accepted Contributor
             
               <v-spacer></v-spacer>
               <span style="text-align:center;"> {{quest.contributor.length}}/{{ quest.numberofcon }}</span>
@@ -214,18 +214,27 @@
 
 
               <v-btn
-                v-if="isowner && !isstart  && quest.status!='pending'"
+                v-if="isowner && !isstart  && quest.status!='pending' && (quest.wait.length == 0)"
+                color="#ff6e40"
+                text
+                style="float: right; margin-top: 2%; font-size: 15px; background-color:white; margin-left: 3.5%; border: 1px solid #ff6e40"
+                
+              >
+                Contributor ({{ quest.wait.length }})
+              </v-btn>
+              
+              <v-btn
+                v-if="isowner && !isstart  && quest.status!='pending' && (quest.wait.length > 0)"
                 color="white"
                 text
                 style="float: right; margin-top: 2%; font-size: 15px; background-color:#ff6e40; margin-left: 3.5%;"
                 @click="dialog2 = true"
-
               >
-                Contributor
+                Contributor ({{ quest.wait.length }})
               </v-btn>
 
               <v-btn
-                v-if="isowner && !isstart && quest.status!='pending'"
+                v-if="isowner && !isstart && quest.status != 'pending' && (quest.contributor.length >= 1)"
                 color="white"
                 text
                 style="float: right; margin-top: 2%; font-size: 15px; background-color:#10ae10; margin-left: 3.5%;"
@@ -331,7 +340,7 @@
         <v-card style="background-color:#ececec">
           <div id="helperBox" v-if="isowner">
             <h3 style="text-align:center;margin-bottom:5%;">
-              Select your recruiter
+              Select your contributor
             </h3>
             <v-row style="margin-left:0.5%;">
               <v-col cols="10" md="9">
@@ -350,7 +359,7 @@
               <v-list-item :key="item.index">
                 <v-row style="border-top:1px solid gray;" >
                   <v-col cols="10" md="10"  >
-                  <router-link :to="'/profile/id/' + item._id">
+                  <router-link :to="'/profile/id/' + item._id" target="_blank">
                     {{ item.infoma.firstname }}
                   </router-link>
                     
@@ -582,7 +591,7 @@ export default {
     },
     isstart:function(){
       let qstatus = this.quest.status
-      return qstatus=='inprogress'
+      return qstatus == 'inprogress'
     },
     cremain:function() {   
       // let c =0
