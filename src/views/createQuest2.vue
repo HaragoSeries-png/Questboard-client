@@ -4,79 +4,66 @@
       <div class="a" style="margin-bottom:5%;">
         unyong
       </div>
-    <center>
+      <center>
+        <div class="container" style="margin-left:auto;margin-right:auto;">
+          <form id="Form1">
+            <center>
+              <h3 style="margin-bottom:15%;color:black;font-weight:bold;">
+                Information
+              </h3>
+              <v-text-field
+                style="margin-bottom:7%; "
+                id="iq"
+                :rules="rules"
+                placeholder="Quest Name"
+                hint="Baby sister,Tutor"
+                v-model="questname"
+              ></v-text-field>
+              <v-select
+                :items="items"
+                id="ic"
+                placeholder="Category"
+                style="margin-bottom:7%;"
+                dense
+                v-model="category"
+              ></v-select>
+              <v-text-field
+                style="margin-bottom:7%;"
+                id="iq"
+                :rules="rules"
+                v-model="reward"
+                autocomplete="off"
+                hint="Example:     1 Cola , Money 20 USD "
+                placeholder="Reward"
+              ></v-text-field>
+              <center>
+                <i
+                  class="material-icons"
+                  style="margin-bottom:2%;font-size:25px;"
+                  >person</i
+                >
+              </center>
+              <div style="text-align:center;font-size:18px;color:gray">
+                Number of Contributor
+              </div>
+              <span>
+                <input
+                  type="number"
+                  min="1"
+                  id="num_per"
+                  v-model="numberofcon"
+                  style=" border-top:1px solid white; border-left:1px solid white; border-right:1px solid white;margin-bottom:18%;outline:none;"
+                />
+              </span>
+            </center>
 
-   
-      <div class="container" style="margin-left:auto;margin-right:auto;">
-        <form id="Form1">
-          <center>
-           
-                                                                  <h3 style="margin-bottom:15%;color:black;font-weight:bold;">
-                                                                    Information
-                                                                  </h3>
-                                                                  <v-text-field
-                                                                    style="margin-bottom:7%; "
-                                                                    id="iq"
-                                                                    :rules="rules"
-                                                                    counter="30"
-                                                                    placeholder="Quest Name"
-                                                                    hint="Baby sister,Tutor"
-                                                                    v-model="questname"
-                                                                  ></v-text-field>
-                                                                  <v-select
-                                                                    :items="items"
-                                                                    id="ic"
-                                                                    placeholder="Category"
-                                                                    style="margin-bottom:7%;"
-                                                                    dense
-                                                                    v-model="category"
-                                                                  ></v-select>
-                                                                  <v-text-field
-                                                                    style="margin-bottom:7%;"
-                                                                    id="iq"
-                                                                    :rules="rules"
-                                                                    counter="55"
-                                                                    v-model="reward"
-                                                                    autocomplete="off"
-                                                                    hint="100 THB, Cola x 1"
-                                                                    placeholder="Reward"
-                                                                  ></v-text-field>
-                                                                <center> 
-                                                                <i class="material-icons"  style="margin-bottom:2%;font-size:25px;">person</i>
-                                                                </center>
-                                                                <div style="text-align:center;font-size:18px;color:gray">
-                                                                  Number of Contributor
-                                                                </div>
-                                                                    <span>
-                                                                  <input
-                                                                    type="number"
-                                                                    min="1"
-                                                                    id="num_per"
-                                                                    v-model="numberofcon"
-                                                                    
-                                                                    style=" border-top:1px solid white; border-left:1px solid white; border-right:1px solid white;margin-bottom:18%;outline:none;"
-                                                                  /> 
-                                                                    </span>
-                                                                  
-                                                             
-          
-          </center>
+            <div class="btn-box" style="margin-top:10%;">
+              <button type="button" id="Next1" @click="nClick1()">Next</button>
+            </div>
+          </form>
 
-          <div class="btn-box" style="margin-top:10%;">
-            <button type="button" id="Next1" @click="nClick1()">Next</button>
-          </div>
-        </form>
-
-
-
-
-
-
-
-
-
-        <form id="Form2">
- <div class="section1">
+          <form id="Form2">
+            <div class="section1">
               <div style="font-size:20px;font-weight:bold;margin-bottom:%;">
                 Choose Quest image
               </div>
@@ -151,96 +138,63 @@
                 ></v-file-input>
               </div>
             </div>
-     <div class="btn-box">
-                                                                    <button type="button" id="Back1" @click="bClick1()">Back</button>
-                                                                    <button type="button" id="Next2" @click="nClick2()">Next</button>
-                                                                  </div>
+            <div class="btn-box">
+              <button type="button" id="Back1" @click="bClick1()">Back</button>
+              <button type="button" id="Next2" @click="nClick2()">Next</button>
+            </div>
+          </form>
 
+          <form id="Form3">
+            <h3 style="margin-bottom:15%;color:black;font-weight:bold;">
+              Information
+            </h3>
+            <div>
+              Deadline
+              <div>(Last day to apply quest)</div>
+            </div>
+            <input
+              type="date"
+              name=""
+              id="I_date"
+              v-model="duedate"
+              style="margin-bottom:20%;"
+              :min="this.current_date"
+            />
+            <div>
+              More Detail
+            </div>
+            <v-textarea
+              v-model="detail"
+              color="teal"
+              dense
+              contain
+              textarea
+              style="margin-bottom:45%;font-size:12px;margin-top:5%;"
+            ></v-textarea>
 
-
-
-        </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <form id="Form3">
-        <h3 style="margin-bottom:15%;color:black;font-weight:bold;">
-            Information
-          </h3>
-          <div>
-            Deadline
-            <div>(Last day to apply quest)</div>
+            <div id="alertField" style="margin-top:-35%;color:red;"></div>
+            <div class="btn-box">
+              <button type="button" id="Back2" @click="bClick2()">Back</button>
+              <button type="button" @click="checkAll()">Submit</button>
+            </div>
+          </form>
+          <div class="step-row">
+            <div id="progress"></div>
+            <div class="step-col"><small>Step1</small></div>
+            <div class="step-col"><small>Step2</small></div>
+            <div class="step-col"><small>Step3</small></div>
           </div>
-         <input
-                        type="date"
-                        name=""
-                        id="I_date"
-                        v-model="duedate"
-                        style="margin-bottom:20%;"
-                        :min="this.current_date"
-                      />
-        <div>
-          More Detail
         </div>
-        <v-textarea
-                          v-model="detail"
-                          color="teal"
-                          dense
-                          contain
-                          textarea
-                          style="margin-bottom:45%;font-size:12px;margin-top:5%;"
-                        ></v-textarea>
-
-           <div id="alertField" style="margin-top:-35%;color:red;"></div>
-          <div class="btn-box">
-            <button type="button" id="Back2" @click="bClick2()">Back</button>
-            <button type="button"  @click="checkAll()">Submit</button>
-          </div>
-        </form>
-        <div class="step-row">
-          <div id="progress"></div>
-          <div class="step-col"><small>Step1</small></div>
-          <div class="step-col"><small>Step2</small></div>
-          <div class="step-col"><small>Step3</small></div>
-        </div>
-      </div>
-      <v-overlay :value="isLoading">
-      <v-progress-circular
-        indeterminate
-        size="64"
-      ></v-progress-circular>
-    </v-overlay>
-       </center>
+        <v-overlay :value="isLoading">
+          <v-progress-circular indeterminate size="64"></v-progress-circular>
+        </v-overlay>
+      </center>
     </div>
   </div>
 </template>
 
 <script>
 import QuestService from "@/service/questService";
-
 
 export default {
   name: "Create Quest",
@@ -258,7 +212,7 @@ export default {
 
   data() {
     return {
-      isLoading :false,
+      isLoading: false,
       icon: "mdi-upload",
       items: [
         "Handicraft",
@@ -325,9 +279,7 @@ export default {
         const file = this.files;
         console.log(file);
         this.url = URL.createObjectURL(file);
-        console.log("url "+this.url)
-       
-
+        console.log("url " + this.url);
       }
     },
     chooseFiles() {
@@ -335,26 +287,26 @@ export default {
     },
 
     checkAll() {
-      console.log('check all in progress')
+      console.log("check all in progress");
       let alertField = document.getElementById("alertField");
       alertField.innerHTML = "";
-      console.log('quest not working1');
+      console.log("quest not working1");
       if (this.duedate == "") {
         alertField.innerHTML += "<li>Please full fill</li>";
       }
       if (this.category == "") {
         alertField.innerHTML += "<li>Please select category</li>";
       }
-      if(this.numberofcon <= 0){
-        alertField.innerHTML += "<li>Number of Contributor cant be less than 0</li>";
+      if (this.numberofcon <= 0) {
+        alertField.innerHTML +=
+          "<li>Number of Contributor cant be less than 0</li>";
       }
-      console.log('quest not working2');
+      console.log("quest not working2");
       if (alertField.innerHTML == "") this.sendquest();
-      console.log('quest has been send');
+      console.log("quest has been send");
     },
     sendquest: async function() {
-      
-      console.log(this.isLoading)
+      console.log(this.isLoading);
       let formData = new FormData();
       // files
 
@@ -370,20 +322,18 @@ export default {
       formData.append("tend", this.tend);
       formData.append("numberofcon", this.numberofcon);
       formData.append("duedate", this.duedate);
-      this.isLoading =true
+      this.isLoading = true;
       let suc = await QuestService.createquest(formData).then((res) => {
         return res.suc;
       });
       console.log("logsuc" + suc);
-      this.isLoading =true
+      this.isLoading = true;
       if (suc) this.$router.push({ path: "/feed" });
       else alert("fail");
     },
   },
 };
 </script>
-
-
 
 <style scoped>
 * {
@@ -489,7 +439,7 @@ form button {
 }
 @media only screen and (max-width: 320px) {
   .a {
-    margin-top:4%;
+    margin-top: 4%;
   }
 }
 @import url(https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital@1&display=swap);

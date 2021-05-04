@@ -14,25 +14,32 @@
             </center>
             <v-card-actions class="Rate">
               <div class="statusQuest">
-                <div v-if="quest.status == 'pending'">
+                <div id="showWaiting" v-if="quest.status == 'pending'">
                   <span style="background-color:#f57c00;" class="statusBox">{{
-                    quest.status
-                  }}</span>
+                    quest.status}}</span>
+                     <div class="detailInprogress">Helper is starting quest and contributor can start working.</div>
                 </div>
-                <div v-else-if="quest.status == 'inprogress'">
+
+                <div id="showWaiting"  v-else-if="quest.status == 'inprogress'">
                   <span style="background-color:#1e88e5;" class="statusBox">
                     {{ quest.status }}</span
                   >
+                    <div class="detailPending">Waiting for admin to approve</div>
                 </div>
-                <div v-else-if="quest.status == 'complete'">
+
+
+                <div id="showWaiting"   v-else-if="quest.status == 'complete'">
                   <span style="background-color:#E30B5C;" class="statusBox">
                     {{ quest.status }}</span
                   >
+                   <div class="detailComplete">This quest is completed</div>
                 </div>
-                <div v-else-if="quest.status == 'waiting'">
+
+                <div  id="showWaiting"   v-else-if="quest.status == 'waiting'">
                   <span style="background-color:#689f38;" class="statusBox">
                     {{ quest.status }}</span
                   >
+                  <div class="detailWaiting">Waiting for contributor and confirm help.</div>
                 </div>
               
               </div>
@@ -131,7 +138,7 @@
 
             <v-divider></v-divider>
             <v-card-actions class="pa-4">
-              Contributor
+              Helper
               <v-spacer></v-spacer>
               <router-link :to="'/profile/id/' + ownerID" target="_blank">
                 <span style="text-align:center;"> {{ ownername }}</span>
@@ -677,25 +684,12 @@ export default {
       let dateNow = new Date()
       let dateDeadline = new Date(this.quest.duedate)
       let deadline = new Date(dateDeadline.getTime() - dateNow.getTime())
-      // let months = [
-      //         'January',
-      //         'February',
-      //         'March',
-      //         'April',
-      //         'May',
-      //         'June',
-      //         'July',
-      //         'August',
-      //         'September',
-      //         'October',
-      //         'November',
-      //         'December'
-      // ]
 
       if (deadline < 0) return 'Expired'
       else if (deadline.getUTCFullYear() - 1970 > 0) return false
       else if (deadline.getUTCMonth() > 0) return false
       else if (deadline.getUTCDate() - 1 > 0) return deadline.getUTCDate() - 1 + " Days left."
+      else if (deadline.getUTCDate() - 1 == 0) return "Expired this day."
       else return 'Expired'
     }
   },
@@ -801,8 +795,52 @@ table {
  background-color:green; 
  margin-left: 10%;
  font-size: 20px;
- 
 }
+#showWaiting:hover {
+  position:relative;
+}
+#showWaiting:hover + .detailWaiting {
+  animation: animate__fadeIn;
+  animation-duration:2s;
+  display: block;
+  
+}
+.detailWaiting{
+  position: absolute;
+  width: 300px;
+  top:200%;
+  color: #689f38;
+  animation: text 3s 1;
+  transition: 2s;
+}
+.detailInprogress{
+  position: absolute;
+  width: 300px;
+  top:200%;
+  color: #1e88e5;
+  animation: text 3s 1;
+  transition: 2s;
+}
+.detailPending{
+  position: absolute;
+  width: 300px;
+  top:200%;
+  color: #f57c00;
+  animation: text 3s 1;
+  transition: 2s;
+}
+.detailComplete{
+  position: absolute;
+  width: 300px;
+  top:200%;
+  color: #E30B5C;
+  animation: text 3s 1;
+  transition: 2s;
+}
+
+
+
+
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Hammersmith+One&family=Lexend+Mega&display=swap");
 @media screen and (max-width: 956px) {

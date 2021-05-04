@@ -30,17 +30,13 @@
 
       <div id="profileTab" v-if="$store.getters.isLoggedIn">
         <div class="profileInfo">
-          <span style="color:#ffc76e;">Welcome</span>
+          <span style="color:#ffc76e;font-size:16px">Welcome</span>
           <br />
-          <span style="font-size: 14px" class="c_font">{{
+          <span style="font-size: 16px" class="c_font">{{
             this.$store.getters.getfullname
           }}</span>
           <br />
-          <router-link
-            :to="'/profile/id/' + this.$store.getters.getuserid"
-            style="font-size: 14px; color: orange"
-            >View your profile</router-link
-          >
+        
         </div>
         <v-divider></v-divider>
       </div>
@@ -77,7 +73,7 @@
         <template v-slot:activator >
           <v-list-item-content  >
             <div class="titlefont c_font">
-              <v-icon style="color:#ffc76e;padding-right:27px;" >mdi-account-circle</v-icon>
+              <v-icon style="color:#ffc76e;padding-right:27px;" >mdi-wan</v-icon>
             Quest</div>
             </v-list-item-content>
         </template>
@@ -153,16 +149,16 @@
             </v-list-item-content>
           </v-list-item>
 
-          <v-list-item to="/createQuest2" color="#FF598F"   class="on_hover" @click="clickEvent()">
+          <v-list-item  :to="'/profile/id/' + this.$store.getters.getuserid" color="#FF598F"   class="on_hover" @click="clickEvent()">
             <v-list-item-icon>
               <div class="titlefont">
-                <v-icon  style="color:#ffc76e" >mdi-folder-plus</v-icon>
+                <v-icon  style="color:#ffc76e" >mdi-account-circle</v-icon>
               </div>
             </v-list-item-icon>
 
             <v-list-item-content>
               <div class="titlefont c_font">
-                Create Quest
+                Profile
               </div>
             </v-list-item-content>
           </v-list-item>
