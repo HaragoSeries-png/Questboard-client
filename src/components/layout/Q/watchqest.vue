@@ -464,7 +464,7 @@ export default {
         return res;
       });
       if (suc) {
-        alert('hello1');
+   
         Swal.fire(
           "<alert-title>You request is complete!</alert-title>",
           "<alert-subtitle>Please wait untill helper accepted</alert-subtitle>",
@@ -473,7 +473,7 @@ export default {
         this.dialog = false;
         this.$router.go();
       } else {
-        alert('hello2');
+
         Swal.fire(
           "<alert-title>Something wrong</alert-title>",
           "<alert-subtitle></alert-subtitle>",
@@ -510,12 +510,14 @@ export default {
           "<alert-subtitle>Please wait untill helper accepted</alert-subtitle>",
           "success"
         );
+        this.$router.go();
       } else {
         Swal.fire(
           "<alert-title>Something wrong</alert-title>",
           "<alert-subtitle></alert-subtitle>",
           "fail"
         );
+        this.$router.go();
       }
     },
     async ratecon(){
