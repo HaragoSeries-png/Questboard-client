@@ -447,6 +447,12 @@
       </v-dialog>
 
     </v-container>
+    <v-overlay :value="isLoading">
+      <v-progress-circular
+        indeterminate
+        size="64"
+      ></v-progress-circular>
+    </v-overlay>
   </div>
 </template>
 
@@ -459,7 +465,8 @@ export default {
   name: "questInfo",
   methods: {
     async completed() {
-      
+      this.dialog = false;
+      this.isLoading = true
       let suc = await questService.acceptquest(this.quest._id).then((res) => {
         return res;
       });
@@ -470,7 +477,7 @@ export default {
           "<alert-subtitle>Please wait untill helper accepted</alert-subtitle>",
           "success"
         );
-        this.dialog = false;
+        
         this.$router.go();
       } else {
         Swal.fire(
@@ -483,6 +490,7 @@ export default {
     },
 
     async completeQuest() {
+      
       let suc = await questService.comquest(this.quest._id).then((res) => {
         return res;
       });
@@ -491,6 +499,7 @@ export default {
       }
     },
     async sendHelperSelected() {
+      this.isLoading = true
       if(this.cremain>this.quest.numberofcon){
         return Swal.fire(
           "<alert-title>Something wrong</alert-title>",
@@ -509,6 +518,7 @@ export default {
           "<alert-subtitle>Please wait untill helper accepted</alert-subtitle>",
           "success"
         );
+        this.isLoading = false
         this.$router.go();
       } else {
         Swal.fire(
@@ -520,6 +530,8 @@ export default {
       }
     },
     async ratecon(){
+      this.dialog3= false
+      this.isLoading = true
       let re = await questService.ratingcon(this.conInfor).then((res) => {
         return res;
       });
@@ -553,9 +565,12 @@ export default {
       this.ownername = re.owner.name;
       this.conenfor =re.coninfor
       this.rating = this.quest.rate;
-      this.isLoading = false
+     
       console.log("complete");
       console.log(this.quest);
+      if(this.quest){
+         this.isLoading = false
+      }
     },
     toFeed() {
       this.$router.push("/feed");
@@ -564,6 +579,7 @@ export default {
       return this.selectHelperStatus.filter(Boolean).length;
     },
     async startquest(){
+      this.isLoading = true
       let re = await questService.startquest(this.quest._id)
       if(re){
         this.dialog4 = false
@@ -598,7 +614,7 @@ export default {
   },
   data() {
     return {
-      isLoading:"",
+      isLoading:true,
       quest: "",
       questPic: "",
       questRate: 3,
