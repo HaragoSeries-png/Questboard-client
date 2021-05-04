@@ -17,14 +17,14 @@
                 <div id="showWaiting" v-if="quest.status == 'pending'">
                   <span style="background-color:#f57c00;" class="statusBox">{{
                     quest.status}}</span>
-                     <div class="detailInprogress">Helper is starting quest and contributor can start working.</div>
+                     <div class="detailInprogress">Waiting for admin to approve.</div>
                 </div>
 
                 <div id="showWaiting"  v-else-if="quest.status == 'inprogress'">
                   <span style="background-color:#1e88e5;" class="statusBox">
                     {{ quest.status }}</span
                   >
-                    <div class="detailPending">Waiting for admin to approve</div>
+                    <div class="detailPending">Helper is starting quest and contributor can start working.</div>
                 </div>
 
 
@@ -32,7 +32,7 @@
                   <span style="background-color:#E30B5C;" class="statusBox">
                     {{ quest.status }}</span
                   >
-                   <div class="detailComplete">This quest is completed</div>
+                   <div class="detailComplete">This quest is completed.</div>
                 </div>
 
                 <div  id="showWaiting"   v-else-if="quest.status == 'waiting'">
@@ -473,7 +473,6 @@ export default {
         this.dialog = false;
         this.$router.go();
       } else {
-
         Swal.fire(
           "<alert-title>Something wrong</alert-title>",
           "<alert-subtitle></alert-subtitle>",
