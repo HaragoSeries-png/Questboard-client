@@ -25,7 +25,7 @@
                   >
                 </div>
                 <div v-else-if="quest.status == 'complete'">
-                  <span style="background-color:#689f38;" class="statusBox">
+                  <span style="background-color:#E30B5C;" class="statusBox">
                     {{ quest.status }}</span
                   >
                 </div>

@@ -93,8 +93,9 @@ export default {
     },
     getColor(value) {
       if (value == "waiting") return "green";
-      else if (value == "in progress") return "blue";
+      else if (value == "inprogress") return "blue";
       else if (value == "pending") return "orange";
+      else if (value == "complete") return "pink";
       else return "grey";
     },
   },
